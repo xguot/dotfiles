@@ -412,7 +412,15 @@ return require("lazy").setup({
         "MeanderingProgrammer/render-markdown.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         ft = { "markdown" },
-        opts = {},
+        opts = {
+            latex = {
+                enabled = true,
+                converter = 'latex2text',
+            },
+            win_options = {
+                conceallevel = { default = vim.o.conceallevel, rendered = 3 },
+            },
+        },
     },
 
     {

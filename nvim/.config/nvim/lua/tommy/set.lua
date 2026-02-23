@@ -30,3 +30,5 @@ vim.opt.updatetime = 50
 -- Grammar check
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
+
+vim.opt.conceallevel = 2
