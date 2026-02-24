@@ -123,7 +123,6 @@ return require("lazy").setup({
                     "clangd", "eslint", "lua_ls", "rust_analyzer", "pyright",
                     "jdtls", "solargraph", "html", "marksman", "ltex",
                     "ocamllsp", "gopls",
-                    "sourcekit",
                 },
                 handlers = {
                     function(server_name)
@@ -430,7 +429,7 @@ return require("lazy").setup({
                 conceallevel = { default = vim.o.conceallevel, rendered = 3 },
             },
         },
-    }
+    },
 
     {
         "HakonHarnes/img-clip.nvim",
