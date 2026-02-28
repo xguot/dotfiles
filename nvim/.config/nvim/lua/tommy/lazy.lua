@@ -128,7 +128,7 @@ return require("lazy").setup({
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "clangd", "eslint", "lua_ls", "rust_analyzer", "pyright",
-                    "jdtls", "solargraph", "html", "marksman", "ltex",
+                    "jdtls", "solargraph", "html", "marksman",
                     "ocamllsp", "gopls",
                 },
                 handlers = {
@@ -415,6 +415,11 @@ return require("lazy").setup({
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons", 'nvim-mini/mini.nvim', 'nvim-mini/mini.icons' },
         ft = { "markdown" },
         opts = {
+            enabled = true,
+            render_modes = { "n", "c", "t" },
+            win_config = {
+                concealcursor = "nc",
+            },
             latex = {
                 enabled = true,
                 converter = 'utftex',
@@ -437,6 +442,22 @@ return require("lazy").setup({
         },
         keys = {
             { "<leader>pi", "<cmd>PasteImage<cr>", desc = "Paste image" },
+        },
+    },
+
+    {
+        "3rd/image.nvim",
+        opts = {
+            backend = "kitty",
+            processor = "magick_rock",
+            integrations = {
+                markdown = { enabled = true },
+            },
+            opts = {
+                max_width = 60,
+                max_height = 10,
+            },
+            tmux_passthrough = true,
         },
     },
 
