@@ -59,6 +59,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
+
 return require("lazy").setup({
     {
         "stevearc/conform.nvim",
@@ -218,6 +225,7 @@ return require("lazy").setup({
 
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter").setup({
@@ -225,13 +233,12 @@ return require("lazy").setup({
                     "c", "lua", "vim", "vimdoc", "python", "ruby",
                     "ocaml", "svelte", "typescript", "javascript",
                     "html", "css", "go", "gomod", "markdown", "markdown_inline",
-                    "swift",
+                    "swift", "latex",
                 },
                 sync_install = false,
                 auto_install = true,
                 highlight = {
                     enable = true,
-                    additional_vim_regex_highlighting = false,
                 },
                 indent = { enable = true },
             })
@@ -405,15 +412,17 @@ return require("lazy").setup({
 
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons", 'nvim-mini/mini.nvim', 'nvim-mini/mini.icons' },
         ft = { "markdown" },
         opts = {
             latex = {
                 enabled = true,
-                converter = 'latex2text',
+                converter = 'utftex',
             },
+            html = { enabled = false },
+            yaml = { enabled = false },
             win_options = {
-                conceallevel = { default = vim.o.conceallevel, rendered = 3 },
+                conceallevel = { default = vim.o.conceallevel, rendered = 2 },
             },
         },
     },
