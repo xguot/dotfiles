@@ -5,7 +5,7 @@ return {
         ft = { "markdown" },
         opts = {
             enabled = true,
-            render_modes = { "n", "c", "t" },
+            render_modes = { "n", "c", "t", "i" },
             win_config = {
                 concealcursor = "nc",
             },
