@@ -106,6 +106,7 @@ return {
             { "<leader>md", ":MoltenDelete<CR>",                                                         desc = "Delete Output" },
             { "<leader>mx", ":MoltenDeinit<CR>",                                                         desc = "Deinit Molten Kernel" },
             { "<leader>rc", ":?^# %%\\|\\%^<CR>jV/^# %%\\|\\%$<CR>k<Esc>:<C-u>MoltenEvaluateVisual<CR>", desc = "Run Cell" },
+            { "<leader>mo", ":noautocmd MoltenEnterOutput<CR>",                                          desc = "Enter Output Window" },
         },
     },
 }
