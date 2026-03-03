@@ -99,11 +99,13 @@ return {
             vim.g.molten_output_win_max_height = 20
         end,
         keys = {
-            { "<leader>mi", ":MoltenInit<CR>",                desc = "Initialize Molten" },
-            { "<leader>e",  ":MoltenEvaluateOperator<CR>",    desc = "Evaluate Operator" },
-            { "<leader>rl", ":MoltenEvaluateLine<CR>",        desc = "Evaluate Line" },
-            { "<leader>re", ":<C-u>MoltenEvaluateVisual<CR>", mode = "v",                desc = "Evaluate Visual" },
-            { "<leader>md", ":MoltenDelete<CR>",              desc = "Delete Output" },
+            { "<leader>mi", ":MoltenInit<CR>",                                                           desc = "Initialize Molten" },
+            { "<leader>e",  ":MoltenEvaluateOperator<CR>",                                               desc = "Evaluate Operator" },
+            { "<leader>rl", ":MoltenEvaluateLine<CR>",                                                   desc = "Evaluate Line" },
+            { "<leader>re", ":<C-u>MoltenEvaluateVisual<CR>",                                            mode = "v",                   desc = "Evaluate Visual" },
+            { "<leader>md", ":MoltenDelete<CR>",                                                         desc = "Delete Output" },
+            { "<leader>mx", ":MoltenDeinit<CR>",                                                         desc = "Deinit Molten Kernel" },
+            { "<leader>rc", ":?^# %%\\|\\%^<CR>jV/^# %%\\|\\%$<CR>k<Esc>:<C-u>MoltenEvaluateVisual<CR>", desc = "Run Cell" },
         },
     },
 }
