@@ -1,0 +1,7 @@
+# Theme and Appearance
+theme = nord
+background-opacity = 0.92
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 15
