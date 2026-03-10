@@ -21,6 +21,11 @@ return {
                     timeout_ms = 2000,
                     lsp_fallback = true,
                 },
+                formatters = {
+                    prettier = {
+                        prepend_args = { "--no-config" },
+                    },
+                }
             })
         end,
     },
