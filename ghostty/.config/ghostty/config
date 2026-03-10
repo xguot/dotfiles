@@ -5,3 +5,4 @@ background-opacity = 0.92
 # Font
 font-family = "JetBrainsMono Nerd Font"
 font-size = 15
+macos-spell-check = false

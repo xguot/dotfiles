@@ -130,6 +130,19 @@ return {
                             },
                         })
                     end,
+
+                    matlab_ls = function()
+                        require("lspconfig").matlab_ls.setup({
+                            capabilities = capabilities,
+                            settings = {
+                                MATLAB = {
+                                    installPath = "/Applications/MATLAB_R2025b.app",
+                                    indexWorkspace = true,
+                                    telemetry = false,
+                                },
+                            },
+                        })
+                    end,
                 },
             })
 
