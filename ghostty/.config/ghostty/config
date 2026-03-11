@@ -1,8 +1,12 @@
-# Theme and Appearance
+# Appearance
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
 theme = nord
 background-opacity = 0.92
 
 # Font
 font-family = "JetBrainsMono Nerd Font"
 font-size = 15
-macos-spell-check = false
+
+
