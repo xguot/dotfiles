@@ -1,0 +1,28 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$character"""
+
+add_newline = false
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = ""
+style = "bold purple"
+format = " [$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+format = '([$all_status$ahead_behind]($style) )'
+
+[aws]
+disabled = true
