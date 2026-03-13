@@ -15,7 +15,9 @@ set autoindent smartindent
 set wrap linebreak showbreak=...
 
 " Languages 
-autocmd FileType ruby setlocal ts=2 sw=2 sts=2 et
+autocmd FileType ruby   setlocal ts=2 sw=2 sts=2 et
+autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=88
+let g:python_highlight_all = 1
 
 " Colors
-colorscheme murphy
+colorscheme zaibatsu
