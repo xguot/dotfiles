@@ -11,8 +11,8 @@ set number relativenumber
 
 " File navigation
 nnoremap - :Explore<CR>    
-let g:netrw_liststyle = 3    " use a tree-style view
-let g:netrw_chgwin = 2 
+let g:netrw_liststyle = 0  " thin view is more stable in standard Vim
+let g:netrw_banner = 0     " keeps it clean
 
 " Search
 set hlsearch ignorecase smartcase
