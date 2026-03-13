@@ -1,30 +1,46 @@
-" meta
+" Meta
 autocmd BufWritePost .vimrc source %
-set nocompatible
+set nocompatible            " unlocking the good stuff
+let mapleader = " "
 
-" general
+" General
 syntax on
 set encoding=utf-8
 set mouse=a
 set number relativenumber
 
-" search
-set hlsearch ignorecase smartcase
+" File navigation
+nnoremap - :Explore<CR>    
+let g:netrw_liststyle = 3    " use a tree-style view
 
-" indentation 
+" Search
+set hlsearch ignorecase smartcase
+nnoremap <silent> <C-[> :nohlsearch<CR>
+
+" Indentation 
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent smartindent
 
-" wrapping
+" Wrapping
 set wrap linebreak showbreak=...
 
-" navigation
+" Navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" terminal
+" Split windows
+nnoremap <leader>\| :vsplit<CR>
+nnoremap <leader>- :split<CR>
+
+" Resize windows with Shift + Arrows
+nnoremap <S-Left>  :vertical resize -2<CR>
+nnoremap <S-Right> :vertical resize +2<CR>
+nnoremap <S-Up>    :resize -2<CR>
+nnoremap <S-Down>  :resize +2<CR>
+
+" Terminal
 if has('terminal')
   tnoremap <Esc> <C-\><C-n>
   tnoremap <C-h> <C-\><C-n><C-w>h
@@ -35,10 +51,10 @@ if has('terminal')
   autocmd TerminalOpen * startinsert
 endif
 
-" languages 
+" Languages 
 autocmd FileType ruby   setlocal ts=2 sw=2 sts=2 et
 autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=88
 let g:python_highlight_all = 1
 
-" colorscheme
+" Colorscheme
 colorscheme zaibatsu
