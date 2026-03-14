@@ -2,7 +2,7 @@
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
-theme = nord
+theme = tokyonight
 window-padding-x = 10
 window-padding-y = 10
 window-padding-color = "extend"
