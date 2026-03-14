@@ -35,11 +35,11 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>\| :vsplit<CR>
 nnoremap <leader>- :split<CR>
 
-" Resize windows with Shift + Arrows
-nnoremap <S-Left>  :vertical resize -2<CR>
-nnoremap <S-Right> :vertical resize +2<CR>
-nnoremap <S-Up>    :resize -2<CR>
-nnoremap <S-Down>  :resize +2<CR>
+" Resize windows with Space + hjkl (10 units)
+nnoremap <leader>h :vertical resize -10<CR>
+nnoremap <leader>l :vertical resize +10<CR>
+nnoremap <leader>k :resize -10<CR>
+nnoremap <leader>j :resize +10<CR>
 
 " Languages 
 autocmd FileType ruby   setlocal ts=2 sw=2 sts=2 et

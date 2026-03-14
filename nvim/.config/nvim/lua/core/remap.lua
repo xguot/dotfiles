@@ -56,6 +56,10 @@ vim.keymap.set("v", ">", ">gv")
 
 -- Terminal
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+vim.keymap.set('n', '<leader>h', ':vertical resize -10<CR>', { silent = true })
+vim.keymap.set('n', '<leader>l', ':vertical resize +10<CR>', { silent = true })
+vim.keymap.set('n', '<leader>k', ':resize -10<CR>', { silent = true })
+vim.keymap.set('n', '<leader>j', ':resize +10<CR>', { silent = true })
 vim.keymap.set("n", "<space>st", function()
     vim.cmd.vnew()
     vim.cmd.term()
