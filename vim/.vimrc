@@ -54,7 +54,7 @@ endif
 
 " Languages 
 autocmd FileType ruby   setlocal ts=2 sw=2 sts=2 et
-autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=88
+autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=0
 let g:python_highlight_all = 1
 
 " Colorscheme
