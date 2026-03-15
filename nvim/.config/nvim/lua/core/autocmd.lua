@@ -56,3 +56,13 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.formatexpr = "" -- Disables VimTeX's custom formatter
     end,
 })
+
+-- JavaScript / TypeScript
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "javascriptreact", "typescriptreact" },
+    callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+        vim.opt_local.expandtab = true
+    end,
+})
