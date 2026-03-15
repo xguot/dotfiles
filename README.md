@@ -4,7 +4,8 @@
 > things like colorize my source code..."
 > — _Linus Torvalds_
 
-Currently a work in progress, but the goal is subtraction, not addition. Time spent memorizing new keymaps is time better spent deep learning.
+> "Syntax highlighting is juvenile. When I was a child, I was taught that it's
+> better to read, not to look at the pictures." — Rob Pike
 
 [![Target: uemacs](https://img.shields.io/badge/target-uemacs-blue?style=flat-square&logo=gnuemacs&logoColor=white)](https://github.com/torvalds/uemacs)
 

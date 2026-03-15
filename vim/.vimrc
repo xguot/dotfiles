@@ -4,7 +4,6 @@ set nocompatible            " unlocking the good stuff
 let mapleader = " "
 
 " General
-syntax on
 set encoding=utf-8
 set mouse=a
 set number relativenumber
@@ -81,5 +80,15 @@ endif
 set rtp+=/opt/homebrew/opt/fzf
 nnoremap <leader>ff :FZF<CR>
 
-" Colorscheme
-colorscheme zaibatsu
+" Syntax highlighting is juvenile.
+syntax off
+set t_Co=256
+set termguicolors
+set background=dark
+
+hi Normal       ctermbg=Black guibg=#000000
+hi NonText      ctermbg=Black guibg=#000000
+hi SignColumn   ctermbg=Black guibg=#000000
+hi EndOfBuffer  ctermbg=Black guibg=#000000
+hi LineNr       ctermfg=White guifg=#FFFFFF
+hi CursorLineNr ctermfg=White guifg=#FFFFFF gui=bold
