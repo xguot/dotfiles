@@ -77,5 +77,9 @@ if has('terminal')
   autocmd TerminalOpen * setlocal nonumber norelativenumber | startinsert
 endif
 
+" fzf
+set rtp+=/opt/homebrew/opt/fzf
+nnoremap <leader>ff :FZF<CR>
+
 " Colorscheme
 colorscheme zaibatsu
