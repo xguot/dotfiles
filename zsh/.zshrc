@@ -78,7 +78,9 @@ export FZF_DEFAULT_OPTS="
     --color=info:#eacb8a,prompt:#bf616a,pointer:#b48ead
     --color=marker:#a3be8c,spinner:#b48ead,header:#5e81ac
     --height 40% --layout=reverse --border
-    --preview 'if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat --color=always --line-range :500 {}; fi'
+    --bind 'ctrl-/:toggle-preview'
 "
-
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat --style=numbers --color=always --line-range :500 {}; fi'"
+export FZF_CTRL_R_OPTS="--preview 'echo {2..} | bat --color=always --style=plain --language=sh' --preview-window=down:3:wrap:hidden"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
