@@ -1,5 +1,6 @@
 .DS_Store
 .netrwhist
 .git/
-lazy-lock.json
-**/config-local
+
+nvim/.config/nvim/lazy-lock.json
+ghostty/.config/ghostty/system.conf
