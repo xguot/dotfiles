@@ -27,7 +27,24 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
--- Grammar check
+-- Grammar
 vim.opt.spelllang = "en_us"
-
 vim.opt.conceallevel = 2
+
+-- Clipboard
+vim.opt.clipboard = "unnamedplus"
+
+if vim.fn.executable("wl-copy") == 1 then
+    vim.g.clipboard = {
+        name = "wl-utils",
+        copy = {
+            ["+"] = "wl-copy",
+            ["*"] = "wl-copy",
+        },
+        paste = {
+            ["+"] = "wl-paste --no-newline",
+            ["*"] = "wl-paste --no-newline",
+        },
+        cache_enabled = true,
+    }
+end

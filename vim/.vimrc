@@ -1,17 +1,18 @@
 " Meta
 autocmd BufWritePost .vimrc source %
-set nocompatible            " unlocking the good stuff
+set nocompatible    " unlocking the good stuff
 let mapleader = " "
 
 " General
 set encoding=utf-8
 set mouse=a
 set number relativenumber
+set scrolloff=8
 
 " File navigation
 nnoremap - :Explore<CR>    
-let g:netrw_liststyle = 0  " thin view is more stable in standard Vim
-let g:netrw_banner = 0     " keeps it clean
+let g:netrw_liststyle = 0
+let g:netrw_banner = 0  " keeps it clean
 
 " Search
 set hlsearch ignorecase smartcase
@@ -27,8 +28,9 @@ vnoremap <Space>p "+p
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent smartindent
 
-" Wrapping
-set wrap linebreak showbreak=...
+" Editing
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " Navigation
 nnoremap <C-h> <C-w>h
@@ -81,6 +83,7 @@ nnoremap <leader>ff :FZF<CR>
 
 " Clipboard
 set clipboard=unnamedplus
+
 if executable('wl-copy')
     let g:clipboard = {
           \   'name': 'wl-utils',

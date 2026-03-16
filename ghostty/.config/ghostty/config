@@ -10,11 +10,5 @@ window-padding-color = "extend"
 # Font
 font-family = "JetBrainsMono Nerd Font"
 
-# Mac
-# macos-option-as-alt = true
-# background-opacity = 0.92
-# font-size = 15
-
-# Fedora
-background-opacity = 1
-font-size = 13
+# OS
+config-file = ?system.conf
