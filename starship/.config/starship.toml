@@ -1,28 +1,31 @@
+# Main format
 format = """
 $directory\
 $git_branch\
 $git_status\
+$line_break\
 $character"""
 
-add_newline = false
+# Space between command outputs
+add_newline = true
+
+[line_break]
+disabled = false
 
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
+success_symbol = "[❯](bold #a3be8c)" # Nord green
+error_symbol = "[❯](bold #bf616a)"   # Nord red
 
 [directory]
-style = "bold blue"
+style = "bold #81a1c1" # Nord frost blue
 truncation_length = 3
 truncate_to_repo = true
 
 [git_branch]
-symbol = ""
-style = "bold purple"
-format = " [$symbol$branch]($style) "
+symbol = " "
+style = "bold #b48ead" # Nord purple
+format = "[$symbol$branch]($style) "
 
 [git_status]
-style = "bold red"
+style = "bold #bf616a" # Nord red
 format = '([$all_status$ahead_behind]($style) )'
-
-[aws]
-disabled = true

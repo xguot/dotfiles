@@ -1,20 +1,15 @@
+# OS Detection
+OS="$(uname -s)"
+
 # Environment & Locale
 export LC_ALL=en_US.UTF-8
 export EDITOR="nvim"
-export JAVA_HOME=$(/usr/libexec/java_home)
 
-# PATH Configurations
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="$PATH:/Users/tommy/.local/bin"
+# Common PATHs
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/kaspad/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$PATH:$(go env GOPATH)/bin"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
-
-# Compiler Flags (Ruby)
-export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
 # History & Shell Options
 HISTFILE=$HOME/.zhistory
@@ -29,10 +24,9 @@ setopt hist_verify
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
-# Aliases
+# Common Aliases
 alias c="clear"
 alias ..="cd .."
-alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
 alias vi="nvim"
 alias ls="eza --icons"
 alias ll="eza -lh --icons --git"
@@ -45,31 +39,45 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ''
 
-# Plugins (Homebrew)
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# macOS Specific
+if [[ "$OS" == "Darwin" ]]; then
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
-# zoxide
-eval "$(zoxide init zsh)"
+    alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
+    alias matlab='/Applications/MATLAB_R2025b.app/bin/matlab'
 
-# opam
-[[ ! -r '/Users/tommy/.opam/opam-init/init.zsh' ]] || source '/Users/tommy/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-eval $(opam env)
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-# conda
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+        if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+            . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+        else
+            export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+        fi
     fi
-fi
-unset __conda_setup
+    unset __conda_setup
 
-# starship
+# Fedora Specific
+elif [[ "$OS" == "Linux" ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+
+    alias vim="vimx"
+    alias sysupdate="sudo dnf upgrade --refresh -y"
+
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+fi
+
+# Tools
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 # fzf
@@ -85,6 +93,3 @@ export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza --tree --color=always 
 export FZF_CTRL_R_OPTS="--preview 'echo {2..} | bat --color=always --style=plain --language=sh' --preview-window=down:3:wrap:hidden"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# MATLAB
-alias matlab='/Applications/MATLAB_R2025b.app/bin/matlab'

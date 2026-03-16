@@ -2,3 +2,4 @@
 .netrwhist
 .git/
 lazy-lock.json
+**/config-local

@@ -77,8 +77,26 @@ if has('terminal')
 endif
 
 " fzf
-set rtp+=/opt/homebrew/opt/fzf
 nnoremap <leader>ff :FZF<CR>
+
+" Clipboard
+set clipboard=unnamedplus
+if executable('wl-copy')
+    let g:clipboard = {
+          \   'name': 'wl-utils',
+          \   'copy': { '+': 'wl-copy', '*': 'wl-copy' },
+          \   'paste': { '+': 'wl-paste --no-newline', '*': 'wl-paste --no-newline' },
+          \   'cache_enabled': 1,
+          \ }
+endif
+
+" OS 
+if has("mac")
+    set rtp+=/opt/homebrew/opt/fzf
+else
+    " Fedora
+    set rtp+=/usr/share/fzf
+endif
 
 " Syntax highlighting is juvenile.
 syntax off

@@ -1,16 +1,20 @@
-# System
-macos-option-as-alt = true
-
 # Appearance
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
-theme = nord
+theme = Nord
 window-padding-x = 10
 window-padding-y = 10
 window-padding-color = "extend"
-background-opacity = 0.92
 
 # Font
 font-family = "JetBrainsMono Nerd Font"
-font-size = 15
+
+# Mac
+# macos-option-as-alt = true
+# background-opacity = 0.92
+# font-size = 15
+
+# Fedora
+background-opacity = 1
+font-size = 13
