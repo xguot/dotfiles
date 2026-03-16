@@ -16,7 +16,7 @@ return {
             require("nvim-treesitter").setup({
                 ensure_installed = {
                     "c", "lua", "vim", "vimdoc", "python", "ruby",
-                    "ocaml", "svelte", "typescript", "javascript",
+                    "svelte", "typescript", "javascript",
                     "html", "css", "go", "gomod", "markdown", "markdown_inline",
                     "swift", "latex",
                 },

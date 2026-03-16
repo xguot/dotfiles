@@ -65,7 +65,7 @@ return {
                 ensure_installed = {
                     "clangd", "eslint", "lua_ls", "rust_analyzer", "pyright",
                     "jdtls", "solargraph", "html", "marksman",
-                    "ocamllsp", "gopls",
+                    "gopls",
                 },
                 handlers = {
                     function(server_name)
@@ -110,13 +110,6 @@ return {
                                     "onTypeFormatting", "selectionRanges", "semanticHighlighting",
                                 },
                             },
-                        })
-                    end,
-
-                    ocamllsp = function()
-                        require("lspconfig").ocamllsp.setup({
-                            capabilities = capabilities,
-                            cmd = { "ocamllsp" },
                         })
                     end,
 
