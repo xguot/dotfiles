@@ -15,8 +15,8 @@ let g:netrw_liststyle = 0
 let g:netrw_banner = 0  " keeps it clean
 
 " Search
-set hlsearch ignorecase smartcase
-nnoremap <silent> <C-[> :nohlsearch<CR>
+set nohlsearch
+set incsearch
 
 " System clipboard
 nnoremap <Space>y "+y

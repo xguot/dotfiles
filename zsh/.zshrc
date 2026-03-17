@@ -27,7 +27,8 @@ bindkey '^[[B' history-search-forward
 # Common Aliases
 alias c="clear"
 alias ..="cd .."
-alias vi="nvim"
+alias vi="vim"
+alias v="nvim"
 alias ls="eza --icons"
 alias ll="eza -lh --icons --git"
 alias la="eza -lah --icons --git"
