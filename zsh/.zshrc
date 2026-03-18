@@ -35,33 +35,66 @@ alias la="eza -lah --icons --git"
 alias tree="eza --tree --icons"
 alias ipy="ipython"
 
-# "Love is the death of duty." — Leave the colors behind.
 mode_toggle() {
     local theme=$1
     local quote=$2
     local prompt=$3
     local target="$HOME/.config/ghostty/active-theme.conf"
 
-    echo -e "\n$quote"
-    echo -n "$prompt [y/n]: "
+    echo ""
+    for (( i=0; i<${#quote}; i++ )); do
+        echo -n "${quote:$i:1}"
+        sleep 0.02
+    done
+    echo ""
+    
+    for (( i=0; i<${#prompt}; i++ )); do
+        echo -n "${prompt:$i:1}"
+        sleep 0.02
+    done
+    echo -n " [y/n]: "
     read -k 1 res
     echo ""
     
     if [[ "$res" == "y" ]]; then
+        echo ""
+        if [[ "$theme" == "Nord" ]]; then
+            # Chaotic, scattered snow
+            for (( i=0; i<8; i++ )); do
+                local s1=$(( RANDOM % 15 ))
+                local s2=$(( RANDOM % 20 ))
+                if (( i % 2 == 0 )); then
+                    printf "%${s1}s❅%${s2}s⋆\n" "" ""
+                else
+                    printf "%${s2}s°%${s1}s·\n" "" ""
+                fi
+                sleep 0.08
+            done
+        else
+            # Tighter, solid-looking wall
+            for (( i=0; i<4; i++ )); do
+                local spaces=$(( RANDOM % 25 ))
+                printf "%${spaces}s↟·↟\n" ""
+                sleep 0.08
+            done
+            echo "|===|===|===|===|===|===|===|===|===|===|"
+            echo "|===|===|  THE WALL STANDS  |===|===|===|"
+            sleep 0.2
+        fi
+        echo ""
+
         echo "theme = $theme" > "$target"
 
         # Force the current instance to reload
         if [[ "$(uname)" == "Darwin" ]]; then
-            # macOS
             osascript -e 'tell application "System Events" to tell process "Ghostty" to keystroke "," using {command down, shift down}' >/dev/null 2>&1
         else
-            # Fedora
             killall -USR2 ghostty >/dev/null 2>&1
         fi
     fi
 }
 
-alias stark="mode_toggle stark-monochrome 'Kill the boy. 🐺' 'Now my watch begins? 🕯️'"
+alias stark="mode_toggle stark-monochrome 'Kill the boy. 🐺' 'Let the man be born? 🛡️'"
 alias nord="mode_toggle Nord 'Winter is coming. ❄️' 'Now my watch begins? 🕯️'"
 
 # Zsh
