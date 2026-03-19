@@ -1,6 +1,9 @@
 return {
-    "christoomey/vim-tmux-navigator",
     "ThePrimeagen/vim-be-good",
+    {
+        "christoomey/vim-tmux-navigator",
+        lazy = false,
+    },
     {
         "EdenEast/nightfox.nvim",
         name = "nightfox",
