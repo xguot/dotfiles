@@ -160,4 +160,3 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
 fi
-export PATH="$HOME/.npm-global/bin:$PATH"
