@@ -32,12 +32,6 @@ set autoindent smartindent
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 " Split windows
 nnoremap <leader>\| :vsplit<CR>
 nnoremap <leader>- :split<CR>
@@ -53,28 +47,20 @@ autocmd FileType ruby   setlocal ts=2 sw=2 sts=2 et
 autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=0
 let g:python_highlight_all = 1
 
-function! TmuxMove(direction)
-    let wnr = winnr()
-    silent! execute 'wincmd ' . a:direction
-    " If the window number didn't change, we are at the edge; tell tmux to move
-    if wnr == winnr()
-        call system('tmux select-pane -' . tr(a:direction, 'hjkl', 'LDUR'))
-    endif
-endfunction
-
-" Navigation (Normal Mode)
-nnoremap <silent> <C-h> :call TmuxMove('h')<CR>
-nnoremap <silent> <C-j> :call TmuxMove('j')<CR>
-nnoremap <silent> <C-k> :call TmuxMove('k')<CR>
-nnoremap <silent> <C-l> :call TmuxMove('l')<CR>
+" Tmux-navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " Terminal
 if has('terminal')
   tnoremap <Esc> <C-\><C-n>
-  tnoremap <silent> <C-h> <C-\><C-n>:call TmuxMove('h')<CR>
-  tnoremap <silent> <C-j> <C-\><C-n>:call TmuxMove('j')<CR>
-  tnoremap <silent> <C-k> <C-\><C-n>:call TmuxMove('k')<CR>
-  tnoremap <silent> <C-l> <C-\><C-n>:call TmuxMove('l')<CR>
+  tnoremap <silent> <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
+  tnoremap <silent> <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
+  tnoremap <silent> <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
+  tnoremap <silent> <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
   autocmd TerminalOpen * setlocal nonumber norelativenumber | startinsert
 endif
 
@@ -101,15 +87,7 @@ else
     set rtp+=/usr/share/fzf
 endif
 
-" Tmux-navigator
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-
-" Syntax highlighting is juvenile.
+" Colors
 syntax off
 set t_Co=256
 set termguicolors

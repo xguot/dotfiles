@@ -1,6 +1,15 @@
+# OS
 .DS_Store
-.netrwhist
-.git/
 
+# Vim
+.netrwhist
+*.swp
+*.swo
+
+# Tmux
+tmux-client-*.log
+tmux-server-*.log
+tmux-*.log
+
+tmux/.config/tmux/plugins/
 nvim/.config/nvim/lazy-lock.json
-ghostty/.config/ghostty/system.conf
