@@ -34,6 +34,40 @@ vim.opt.conceallevel = 2
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
 
+-- Digraphs
+local digraphs = {
+    -- UI
+    { 'sq', '▪' }, -- Step / Item
+    { 'st', '✦' }, -- Highlight / Init
+    { 'tr', '❯' }, -- Prompt pointer
+    { 'ok', '✓' }, -- Success
+    { 'xx', '✗' }, -- Error / Fail
+    { 'wa', '▲' }, -- Warning
+    { 'in', 'ℹ' }, -- Info
+    { 'as', '✱' }, -- Heavy asterisk (Checkpoint / New Best)
+    { 'bs', '★' }, -- Solid star (Best model)
+
+    -- Deep Learning
+    { 'pd', '∂' }, -- Partial derivative
+    { 'gr', '∇' }, -- Gradient (Nabla)
+    { 'ep', 'ε' }, -- Epsilon / Error
+    { 'la', 'λ' }, -- Lambda
+    { 'de', 'Δ' }, -- Delta / Change
+    { 'sm', '∑' }, -- Summation
+    { 'it', '∫' }, -- Integral
+
+    -- Logic
+    { 'df', '≡' }, -- Defined as / Identical
+    { 'nq', '≠' }, -- Not equal
+    { 'ap', '≈' }, -- Approximately
+    { 'rt', '→' }, -- Right arrow
+    { 'rb', '⇒' }, -- Implies
+}
+
+for _, d in ipairs(digraphs) do
+    vim.fn.digraph_set(d[1], d[2])
+end
+
 if vim.fn.executable("wl-copy") == 1 then
     vim.g.clipboard = {
         name = "wl-utils",
