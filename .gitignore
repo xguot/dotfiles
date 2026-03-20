@@ -14,3 +14,4 @@ tmux-*.log
 tmux/.config/tmux/plugins/
 nvim/.config/nvim/lazy-lock.json
 ghostty/.config/ghostty/active-theme.conf
+ghostty/.config/ghostty/system.conf
