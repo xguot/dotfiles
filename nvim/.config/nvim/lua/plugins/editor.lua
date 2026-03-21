@@ -18,7 +18,7 @@ return {
                     "c", "lua", "vim", "vimdoc", "python", "ruby",
                     "svelte", "typescript", "javascript",
                     "html", "css", "go", "gomod", "markdown", "markdown_inline",
-                    "swift", "latex",
+                    "swift", "latex", "tsx"
                 },
                 sync_install = false,
                 auto_install = true,
