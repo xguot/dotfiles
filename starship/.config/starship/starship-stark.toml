@@ -12,8 +12,8 @@ truncation_length = 3
 truncate_to_repo = true
 
 [character]
-success_symbol = "[❯](bold white)"
-error_symbol = "[❯](bright-black)"
+success_symbol = "[\\$](bold white)"
+error_symbol = "[\\$](bright-black)"
 
 [git_branch]
 symbol = ""

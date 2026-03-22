@@ -1,0 +1,15 @@
+[character]
+success_symbol = "[❯](bold #a3be8c)"
+error_symbol = "[❯](bold #bf616a)"
+
+[directory]
+style = "bold #81a1c1"
+
+[git_branch]
+style = "bold #b48ead"
+
+[git_status]
+style = "bold #ebcb8b"
+
+[cmd_duration]
+style = "bold #d08770"
