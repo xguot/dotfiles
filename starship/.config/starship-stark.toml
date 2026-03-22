@@ -2,6 +2,7 @@ format = """
 $directory\
 $git_branch\
 $git_status\
+$cmd_duration\
 $line_break\
 $character"""
 
@@ -12,24 +13,24 @@ truncate_to_repo = true
 
 [character]
 success_symbol = "[❯](bold white)"
-error_symbol = "[❯](bold red)"
+error_symbol = "[❯](bright-black)"
 
 [git_branch]
 symbol = ""
 style = "bright-black"
-format = " [$branch]($style) "
+format = " [$branch]($style)"
 
 [git_status]
 style = "bright-black"
-format = "([$all_status$ahead_behind]($style))"
+format = " ([$all_status$ahead_behind]($style))"
+
+[cmd_duration]
+min_time = 500
+style = "bright-black"
+format = " [$duration]($style)"
 
 [golang]
 disabled = true
 
 [python]
 disabled = true
-
-[cmd_duration]
-min_time = 500
-style = "bright-black"
-format = "took [$duration]($style) "
