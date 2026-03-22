@@ -180,3 +180,29 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
 fi
+
+# Vim terminal
+if [[ -n "$VIM_TERMINAL" ]]; then
+  # 1. Tell universally compliant CLI tools to drop colors
+  export NO_COLOR=1
+  export CLICOLOR=0
+
+  # 2. Unalias all your eza commands
+  unalias ls ll la tree 2>/dev/null
+  
+  # 3. Force standard system 'ls' with OS-specific flags
+  if [[ "$OS" == "Darwin" ]]; then
+    # macOS 'ls' doesn't support --color=never, it's monochrome by default
+    alias ls='/bin/ls'
+    alias ll='/bin/ls -l'
+    alias la='/bin/ls -la'
+  else
+    # Linux 'ls' needs the explicit --color=never flag
+    alias ls='/bin/ls --color=never'
+    alias ll='/bin/ls -l --color=never'
+    alias la='/bin/ls -la --color=never'
+  fi
+
+  # 4. Disable zsh-syntax-highlighting so the command prompt isn't green
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=()
+fi

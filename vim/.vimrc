@@ -54,14 +54,14 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
-" Terminal
+" terminal
 if has('terminal')
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <silent> <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
-  tnoremap <silent> <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
-  tnoremap <silent> <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
-  tnoremap <silent> <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
-  autocmd TerminalOpen * setlocal nonumber norelativenumber | startinsert
+  tnoremap <esc> <c-\><c-n>
+  tnoremap <silent> <c-h> <c-\><c-n>:tmuxnavigateleft<cr>
+  tnoremap <silent> <c-j> <c-\><c-n>:tmuxnavigatedown<cr>
+  tnoremap <silent> <c-k> <c-\><c-n>:tmuxnavigateup<cr>
+  tnoremap <silent> <c-l> <c-\><c-n>:tmuxnavigateright<cr>
+  autocmd terminalopen * setlocal nonumber norelativenumber | startinsert
 endif
 
 " fzf
@@ -102,3 +102,6 @@ hi CursorLineNr ctermfg=White guifg=#FFFFFF gui=bold
 hi Pmenu      ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
 hi PmenuSel   ctermfg=White ctermbg=Black guifg=#FFFFFF guibg=#000000 gui=reverse
 hi MatchParen ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
+hi Terminal ctermbg=Black guibg=#000000
+hi StatusLineTerm ctermbg=White ctermfg=Black guibg=White guifg=Black
+hi StatusLineTermNC ctermbg=DarkGray ctermfg=White guibg=DarkGray guifg=White
