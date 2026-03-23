@@ -18,12 +18,6 @@ let g:netrw_banner = 0  " keeps it clean
 set nohlsearch
 set incsearch
 
-" System clipboard
-nnoremap <Space>y "+y
-vnoremap <Space>y "+y
-nnoremap <Space>p "+p
-vnoremap <Space>p "+p
-
 " Indentation 
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent smartindent
