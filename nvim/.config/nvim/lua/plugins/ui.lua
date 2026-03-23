@@ -14,36 +14,6 @@ return {
         end,
     },
     {
-        "hiphish/rainbow-delimiters.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            local hooks = require("ibl.hooks")
-            local highlight = {
-                "NordDeepBlue", "NordMediumBlue", "NordFrostBlue",
-                "NordCyan", "NordLightBlue",
-            }
-
-            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-                vim.api.nvim_set_hl(0, "NordDeepBlue", { fg = "#5e81ac" })
-                vim.api.nvim_set_hl(0, "NordMediumBlue", { fg = "#81a1c1" })
-                vim.api.nvim_set_hl(0, "NordFrostBlue", { fg = "#88c0d0" })
-                vim.api.nvim_set_hl(0, "NordCyan", { fg = "#8fbcbb" })
-                vim.api.nvim_set_hl(0, "NordLightBlue", { fg = "#a3be8c" })
-            end)
-
-            require("ibl").setup({
-                indent = { char = "┆", highlight = highlight },
-                scope = { enabled = false },
-            })
-        end,
-    },
-    {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
         dependencies = { { 'nvim-tree/nvim-web-devicons' } },
