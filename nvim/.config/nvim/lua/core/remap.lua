@@ -65,3 +65,4 @@ end)
 
 -- Lean
 vim.keymap.set('n', '<leader>i', function() require('lean.infoview').toggle() end, { desc = 'Toggle Lean Infoview' })
+vim.keymap.set('n', '<leader>r', function() require('lean').restart() end, { desc = 'Restart Lean Server' })
