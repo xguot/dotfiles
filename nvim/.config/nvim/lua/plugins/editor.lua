@@ -7,7 +7,18 @@ return {
         },
         keys = {
             { "<leader>ff", function() require("telescope.builtin").find_files({ hidden = true }) end, desc = "Find Files" },
-            { "<leader>fs", function() require("telescope.builtin").live_grep() end,                   desc = "Live Grep" },
+            {
+                "<leader>fs",
+                function()
+                    require("telescope.builtin").live_grep({
+                        additional_args = function()
+                            return {
+                                "--hidden" }
+                        end
+                    })
+                end,
+                desc = "Live Grep"
+            },
             { "<leader>fc", function() require("telescope.builtin").git_commits() end,                 desc = "Git Commits" },
         },
         config = function()
