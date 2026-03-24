@@ -1,12 +1,23 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        keys = {
-            { "<leader>ff", function() require("telescope.builtin").find_files({ hidden = true }) end,                     desc = "Find Files" },
-            { "<leader>fs", function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") }) end, desc = "Grep String" },
-            { "<leader>fg", function() require("telescope.builtin").git_files() end,                                       desc = "Git Files" },
+        dependencies = { 
+            "nvim-lua/plenary.nvim",
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
         },
+        keys = {
+            { "<leader>ff", function() require("telescope.builtin").find_files({ hidden = true }) end,      desc = "Find Files" },
+            { "<leader>fs", function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") }) end, desc = "Grep String" },
+            { "<leader>fg", function() require("telescope.builtin").git_files() end,                        desc = "Git Files" },
+        },
+        config = function()
+            require("telescope").setup({
+                extensions = {
+                    fzf = {}
+                }
+            })
+            require("telescope").load_extension("fzf")
+        end,
     },
     {
         "nvim-treesitter/nvim-treesitter",
