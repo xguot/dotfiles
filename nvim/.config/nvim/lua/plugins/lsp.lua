@@ -5,6 +5,7 @@ return {
         config = function()
             require("conform").setup({
                 formatters_by_ft = {
+                    go = { "goimports", "gofmt" },
                     javascript = { "prettier" },
                     typescript = { "prettier" },
                     javascriptreact = { "prettier" },
@@ -79,6 +80,33 @@ return {
                             config.settings = { format = true }
                         end
                         require("lspconfig")[server_name].setup(config)
+                    end,
+
+                    gopls = function()
+                        require("lspconfig").gopls.setup({
+                            capabilities = capabilities,
+                            settings = {
+                                gopls = {
+                                    completeUnimported = true,
+                                    usePlaceholders = true,
+                                    staticcheck = true,
+                                    gofumpt = true,
+                                    analyses = {
+                                        unusedparams = true,
+                                        shadow = true,
+                                    },
+                                    hints = {
+                                        assignVariableTypes = true,
+                                        compositeLiteralFields = true,
+                                        compositeLiteralTypes = true,
+                                        constantValues = true,
+                                        functionTypeParameters = true,
+                                        parameterNames = true,
+                                        parameterTypes = true,
+                                    },
+                                },
+                            },
+                        })
                     end,
 
                     lua_ls = function()
