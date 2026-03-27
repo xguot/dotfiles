@@ -6,6 +6,7 @@ return {
             require("conform").setup({
                 formatters_by_ft = {
                     go = { "goimports", "gofmt" },
+                    tex = { "tex-fmt" },
                     javascript = { "prettier" },
                     typescript = { "prettier" },
                     javascriptreact = { "prettier" },
@@ -23,8 +24,8 @@ return {
                     lsp_fallback = true,
                 },
                 formatters = {
-                    prettier = {
-                        prepend_args = { "--no-config" },
+                    latexindent = {
+                        args = { "-m", "-l", "−" },
                     },
                 }
             })

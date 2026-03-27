@@ -33,6 +33,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- LaTeX
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "tex", "latex", "markdown" },
+    callback = function()
+        vim.opt_local.textwidth = 80
+        vim.opt_local.formatoptions = "tcqj"
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+    end,
+})
+
 -- Markdown / Text
 vim.api.nvim_create_autocmd("FileType", {
     group = my_augroup,
