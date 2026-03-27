@@ -48,7 +48,7 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
-" terminal
+" Terminal
 if has('terminal')
   tnoremap <esc> <c-\><c-n>
   tnoremap <silent> <c-h> <c-\><c-n>:tmuxnavigateleft<cr>

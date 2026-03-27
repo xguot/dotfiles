@@ -56,12 +56,6 @@ vim.keymap.set('n', '<leader>h', ':vertical resize -10<CR>', { silent = true })
 vim.keymap.set('n', '<leader>l', ':vertical resize +10<CR>', { silent = true })
 vim.keymap.set('n', '<leader>k', ':resize -10<CR>', { silent = true })
 vim.keymap.set('n', '<leader>j', ':resize +10<CR>', { silent = true })
-vim.keymap.set("n", "<space>st", function()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd("J")
-    vim.api.nvim_win_set_height(0, 10)
-end)
 
 -- Lean
 vim.keymap.set('n', '<leader>i', function() require('lean.infoview').toggle() end, { desc = 'Toggle Lean Infoview' })
