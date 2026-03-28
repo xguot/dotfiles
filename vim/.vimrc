@@ -1,7 +1,17 @@
-" Meta
-autocmd BufWritePost .vimrc source %
-set nocompatible    " unlocking the good stuff
+" Unlocking the good stuff
+set nocompatible
+
+" Leader
 let mapleader = " "
+
+" Fat cursor
+set guicursor=a:block
+
+" Auto-reload
+augroup ReloadConfig
+  autocmd!
+  autocmd BufWritePost .vimrc source %
+augroup END
 
 " General
 set encoding=utf-8
