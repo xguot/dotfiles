@@ -19,7 +19,10 @@ set nohlsearch
 set incsearch
 
 " Indentation 
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+set tabstop=8
+set shiftwidth=8
+set softtabstop=0
+set noexpandtab
 set autoindent smartindent
 
 " Editing
@@ -86,21 +89,7 @@ else
     set rtp+=/usr/share/fzf
 endif
 
-" Colors
-syntax off
-set t_Co=256
-set termguicolors
+" Colorscheme
 set background=dark
-
-hi Normal       ctermbg=Black guibg=#000000
-hi NonText      ctermbg=Black guibg=#000000
-hi SignColumn   ctermbg=Black guibg=#000000
-hi EndOfBuffer  ctermbg=Black guibg=#000000
-hi LineNr       ctermfg=White guifg=#FFFFFF
-hi CursorLineNr ctermfg=White guifg=#FFFFFF gui=bold
-hi Pmenu      ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
-hi PmenuSel   ctermfg=White ctermbg=Black guifg=#FFFFFF guibg=#000000 gui=reverse
-hi MatchParen ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
-hi Terminal ctermbg=Black guibg=#000000
-hi StatusLineTerm ctermbg=White ctermfg=Black guibg=White guifg=Black
-hi StatusLineTermNC ctermbg=DarkGray ctermfg=White guibg=DarkGray guifg=White
+syntax off
+colorscheme quiet

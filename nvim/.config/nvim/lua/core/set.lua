@@ -1,10 +1,10 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.tabstop = 8
+vim.opt.shiftwidth = 8
+vim.opt.softtabstop = 0
+vim.opt.expandtab = false
 
 vim.opt.textwidth = 0
 vim.opt.wrap = false
@@ -82,3 +82,15 @@ if vim.fn.executable("wl-copy") == 1 then
         cache_enabled = true,
     }
 end
+
+-- Colorscheme
+vim.cmd("syntax off")
+
+local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+if status_ok then
+    configs.setup({
+        highlight = { enable = false },
+    })
+end
+
+vim.cmd.colorscheme("quiet")

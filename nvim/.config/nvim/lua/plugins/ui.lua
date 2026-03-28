@@ -5,15 +5,6 @@ return {
         lazy = false,
     },
     {
-        "EdenEast/nightfox.nvim",
-        name = "nightfox",
-        priority = 1000,
-        config = function()
-            require("nightfox").setup({ options = { transparent = true } })
-            vim.cmd.colorscheme("nordfox")
-        end,
-    },
-    {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
         dependencies = { { 'nvim-tree/nvim-web-devicons' } },

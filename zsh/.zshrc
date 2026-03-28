@@ -36,78 +36,6 @@ alias tree="eza --tree --icons"
 alias ipy="ipython"
 alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
 
-mode_toggle() {
-    local theme=$1
-    local quote=$2
-    local prompt=$3
-    local target="$HOME/.config/ghostty/active-theme.conf"
-
-    echo ""
-    for (( i=0; i<${#quote}; i++ )); do
-        echo -n "${quote:$i:1}"
-        sleep 0.02
-    done
-    echo ""
-    
-    for (( i=0; i<${#prompt}; i++ )); do
-        echo -n "${prompt:$i:1}"
-        sleep 0.02
-    done
-    echo -n " [y/n]: "
-    read -k 1 res
-    echo ""
-    
-    if [[ "$res" == "y" ]]; then
-        echo ""
-        if [[ "$theme" == "Nord" ]]; then
-            # Chaotic, scattered snow
-            for (( i=0; i<8; i++ )); do
-                local s1=$(( RANDOM % 15 ))
-                local s2=$(( RANDOM % 20 ))
-                if (( i % 2 == 0 )); then
-                    printf "%${s1}s❅%${s2}s⋆\n" "" ""
-                else
-                    printf "%${s2}s°%${s1}s·\n" "" ""
-                fi
-                sleep 0.08
-            done
-        else
-            # Tighter, solid-looking wall
-            for (( i=0; i<4; i++ )); do
-                local spaces=$(( RANDOM % 25 ))
-                printf "%${spaces}s↟·↟\n" ""
-                sleep 0.08
-            done
-            echo "|===|===|===|===|===|===|===|===|===|===|"
-            echo "|===|===|  THE WALL STANDS  |===|===|===|"
-            sleep 0.2
-        fi
-        echo ""
-
-        echo "theme = $theme" > "$target"
-
-        local starship_active="$HOME/.starship_active"
-
-        if [[ "$theme" == "Nord" ]]; then
-            echo "export STARSHIP_CONFIG=\"$HOME/.config/starship/starship-nord.toml\"" > "$starship_active"
-        else
-            echo "export STARSHIP_CONFIG=\"$HOME/.config/starship/starship-stark.toml\"" > "$starship_active"
-        fi
-
-        source "$starship_active"
-
-        # Force the current instance to reload
-        if [[ "$(uname)" == "Darwin" ]]; then
-            osascript -e 'tell application "System Events" to tell process "Ghostty" to keystroke "," using {command down, shift down}' >/dev/null 2>&1
-        else
-            killall -USR2 ghostty >/dev/null 2>&1
-        fi
-    fi
-}
-
-alias stark="mode_toggle stark-monochrome 'Kill the boy. 🐺' 'Let the man be born? 🛡️'"
-alias nord="mode_toggle Nord 'Winter is coming. ❄️' 'Now my watch begins? 🕯️'"
-
 # Zsh
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
@@ -162,20 +90,11 @@ fi
 # Better cd
 eval "$(zoxide init zsh)"
 
-# Sync Starship theme on every new prompt
-autoload -Uz add-zsh-hook
-_sync_starship() {
-    [ -f ~/.starship_active ] && source ~/.starship_active
-}
-add-zsh-hook precmd _sync_starship
+# Starship
 eval "$(starship init zsh)"
 
 # fzf
 export FZF_DEFAULT_OPTS="
-    --color=fg:#e5e9f0,bg:-1,hl:#81a1c1
-    --color=fg+:#eceff4,bg+:#3b4252,hl+:#81a1c1
-    --color=info:#eacb8a,prompt:#bf616a,pointer:#b48ead
-    --color=marker:#a3be8c,spinner:#b48ead,header:#5e81ac
     --height 40% --layout=reverse --border
     --bind 'ctrl-/:toggle-preview'
 "
