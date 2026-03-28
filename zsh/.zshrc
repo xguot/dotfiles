@@ -9,7 +9,11 @@ export EDITOR="nvim"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/kaspad/bin:$PATH"
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
-export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.elan/bin:$PATH"
+
+# Local secrets
+[ -f "$HOME/.env" ] && source "$HOME/.env"
 
 # History & Shell Options
 HISTFILE=$HOME/.zhistory
@@ -140,9 +144,6 @@ if [[ "$OS" == "Darwin" ]]; then
 
 # Fedora Specific
 elif [[ "$OS" == "Linux" ]]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-    export PATH="$HOME/.elan/bin:$PATH"
-
     if [ -d "/home/linuxbrew/.linuxbrew" ]; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
