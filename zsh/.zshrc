@@ -120,6 +120,8 @@ if [[ "$OS" == "Darwin" ]]; then
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
     export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+    export LIBRARY_PATH="$(brew --prefix)/lib:$LIBRARY_PATH"
+    export CPATH="$(brew --prefix)/include:$CPATH"
 
     alias matlab='/Applications/MATLAB_R2025b.app/bin/matlab'
 
