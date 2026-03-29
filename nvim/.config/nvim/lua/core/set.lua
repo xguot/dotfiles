@@ -85,14 +85,6 @@ if vim.fn.executable("wl-copy") == 1 then
 	}
 end
 
--- Colorscheme
+-- Blackboard white chalk
 vim.cmd("syntax off")
-
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if status_ok then
-	configs.setup({
-		highlight = { enable = false },
-	})
-end
-
 vim.cmd.colorscheme("quiet")

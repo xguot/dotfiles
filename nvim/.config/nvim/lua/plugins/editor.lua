@@ -31,27 +31,6 @@ return {
 		end,
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		branch = "main",
-		build = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter").setup({
-				ensure_installed = {
-					"c", "lua", "vim", "vimdoc", "python", "ruby",
-					"svelte", "typescript", "javascript",
-					"html", "css", "go", "gomod", "markdown", "markdown_inline",
-					"swift", "latex", "tsx"
-				},
-				sync_install = false,
-				auto_install = true,
-				highlight = {
-					enable = true,
-				},
-				indent = { enable = true },
-			})
-		end,
-	},
-	{
 		"stevearc/oil.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
