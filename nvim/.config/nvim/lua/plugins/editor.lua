@@ -44,7 +44,9 @@ return {
 				},
 				sync_install = false,
 				auto_install = true,
-				highlight = { enable = true },
+				highlight = {
+					enable = true,
+				},
 				indent = { enable = true },
 			})
 		end,
@@ -59,30 +61,10 @@ return {
 					["<C-l>"] = false,
 					["<C-k>"] = false,
 					["<C-j>"] = false,
-					["<leader>pf"] = false,
-					["<leader>pg"] = false,
-					["<leader>ps"] = false,
 				},
 				columns = { "icon", "permissions", "size" },
 				view_options = { show_hidden = true, natural_order = true },
 				float = { padding = 2, border = "rounded" },
-			})
-
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = "oil",
-				callback = function()
-					vim.opt_local.conceallevel = 2
-					vim.opt_local.concealcursor = "nc"
-					vim.opt_local.syntax = "on"
-				end,
-			})
-
-			vim.api.nvim_create_autocmd("BufEnter", {
-				callback = function()
-					if vim.bo.filetype ~= "" and vim.bo.filetype ~= "oil" then
-						pcall(vim.treesitter.start)
-					end
-				end,
 			})
 		end,
 	},
