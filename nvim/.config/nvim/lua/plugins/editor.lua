@@ -3,29 +3,42 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		keys = {
-			{ "<leader>ff", function() require("telescope.builtin").find_files({ hidden = true }) end, desc = "Find Files" },
+			{
+				"<leader>ff",
+				function()
+					require("telescope.builtin").find_files({ hidden = true })
+				end,
+				desc = "Find Files",
+			},
 			{
 				"<leader>fs",
 				function()
 					require("telescope.builtin").live_grep({
 						additional_args = function()
 							return {
-								"--hidden" }
-						end
+								"--hidden",
+							}
+						end,
 					})
 				end,
-				desc = "Live Grep"
+				desc = "Live Grep",
 			},
-			{ "<leader>fc", function() require("telescope.builtin").git_commits() end,                 desc = "Git Commits" },
+			{
+				"<leader>fc",
+				function()
+					require("telescope.builtin").git_commits()
+				end,
+				desc = "Git Commits",
+			},
 		},
 		config = function()
 			require("telescope").setup({
 				extensions = {
-					fzf = {}
-				}
+					fzf = {},
+				},
 			})
 			require("telescope").load_extension("fzf")
 		end,
@@ -62,9 +75,9 @@ return {
 		"tpope/vim-fugitive",
 		cmd = { "Gvdiffsplit", "Git" },
 		keys = {
-			{ "<leader>gs", vim.cmd.Git,             desc = "Git Status" },
+			{ "<leader>gs", vim.cmd.Git, desc = "Git Status" },
 			{ "<leader>gd", "<cmd>Gvdiffsplit!<cr>", desc = "Git Diff Vertical" },
-			{ "<leader>gb", "<cmd>Git blame<cr>",    desc = "Git Blame" },
+			{ "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
 		},
 	},
 	{
@@ -75,16 +88,32 @@ return {
 			local harpoon = require("harpoon")
 			harpoon:setup()
 
-			vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-			vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+			vim.keymap.set("n", "<leader>a", function()
+				harpoon:list():add()
+			end)
+			vim.keymap.set("n", "<C-e>", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+			end)
 
-			vim.keymap.set("n", "<leader>q", function() harpoon:list():select(1) end)
-			vim.keymap.set("n", "<leader>w", function() harpoon:list():select(2) end)
-			vim.keymap.set("n", "<leader>e", function() harpoon:list():select(3) end)
-			vim.keymap.set("n", "<leader>r", function() harpoon:list():select(4) end)
+			vim.keymap.set("n", "<leader>q", function()
+				harpoon:list():select(1)
+			end)
+			vim.keymap.set("n", "<leader>w", function()
+				harpoon:list():select(2)
+			end)
+			vim.keymap.set("n", "<leader>e", function()
+				harpoon:list():select(3)
+			end)
+			vim.keymap.set("n", "<leader>r", function()
+				harpoon:list():select(4)
+			end)
 
-			vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-			vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+			vim.keymap.set("n", "<C-S-P>", function()
+				harpoon:list():prev()
+			end)
+			vim.keymap.set("n", "<C-S-N>", function()
+				harpoon:list():next()
+			end)
 		end,
 	},
 }

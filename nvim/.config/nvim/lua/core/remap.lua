@@ -57,42 +57,52 @@ local function resize(cmd, side, amt)
 	vim.cmd(string.format("%s %s%d", cmd, dir > 0 and "+" or "", dir))
 end
 
-vim.keymap.set("n", "<leader>h", function() resize("vertical resize", "l", 10) end)
-vim.keymap.set("n", "<leader>l", function() resize("vertical resize", "l", -10) end)
-vim.keymap.set("n", "<leader>k", function() resize("resize", "j", 10) end)
-vim.keymap.set("n", "<leader>j", function() resize("resize", "j", -10) end)
+vim.keymap.set("n", "<leader>h", function()
+	resize("vertical resize", "l", 10)
+end)
+vim.keymap.set("n", "<leader>l", function()
+	resize("vertical resize", "l", -10)
+end)
+vim.keymap.set("n", "<leader>k", function()
+	resize("resize", "j", 10)
+end)
+vim.keymap.set("n", "<leader>j", function()
+	resize("resize", "j", -10)
+end)
 
 -- Lean
-vim.keymap.set('n', '<leader>i', function() require('lean.infoview').toggle() end, { desc = 'Toggle Lean Infoview' })
+vim.keymap.set("n", "<leader>i", function()
+	require("lean.infoview").toggle()
+end, { desc = "Toggle Lean Infoview" })
 
 -- Digraphs
 local digraphs = {
 	-- UI
-	{ 'sq', '▪' }, -- Step / Item
-	{ 'st', '✦' }, -- Highlight / Init
-	{ 'tr', '❯' }, -- Prompt pointer
-	{ 'ok', '✓' }, -- Success
-	{ 'xx', '✗' }, -- Error / Fail
-	{ 'wa', '▲' }, -- Warning
-	{ 'in', 'ℹ' }, -- Info
-	{ 'as', '✱' }, -- Heavy asterisk (Checkpoint / New Best)
-	{ 'bs', '★' }, -- Solid star (Best model)
+	{ "sq", "▪" }, -- Step / Item
+	{ "st", "✦" }, -- Highlight / Init
+	{ "tr", "❯" }, -- Prompt pointer
+	{ "ok", "✓" }, -- Success
+	{ "xx", "✗" }, -- Error / Fail
+	{ "wa", "▲" }, -- Warning
+	{ "in", "ℹ" }, -- Info
+	{ "as", "✱" }, -- Heavy asterisk (Checkpoint / New Best)
+	{ "bs", "★" }, -- Solid star (Best model)
 
 	-- Deep Learning
-	{ 'pd', '∂' }, -- Partial derivative
-	{ 'gr', '∇' }, -- Gradient (Nabla)
-	{ 'ep', 'ε' }, -- Epsilon / Error
-	{ 'la', 'λ' }, -- Lambda
-	{ 'de', 'Δ' }, -- Delta / Change
-	{ 'sm', '∑' }, -- Summation
-	{ 'it', '∫' }, -- Integral
+	{ "pd", "∂" }, -- Partial derivative
+	{ "gr", "∇" }, -- Gradient (Nabla)
+	{ "ep", "ε" }, -- Epsilon / Error
+	{ "la", "λ" }, -- Lambda
+	{ "de", "Δ" }, -- Delta / Change
+	{ "sm", "∑" }, -- Summation
+	{ "it", "∫" }, -- Integral
 
 	-- Logic
-	{ 'df', '≡' }, -- Defined as / Identical
-	{ 'nq', '≠' }, -- Not equal
-	{ 'ap', '≈' }, -- Approximately
-	{ 'rt', '→' }, -- Right arrow
-	{ 'rb', '⇒' }, -- Implies
+	{ "df", "≡" }, -- Defined as / Identical
+	{ "nq", "≠" }, -- Not equal
+	{ "ap", "≈" }, -- Approximately
+	{ "rt", "→" }, -- Right arrow
+	{ "rb", "⇒" }, -- Implies
 }
 
 for _, d in ipairs(digraphs) do
