@@ -11,27 +11,15 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
--- C / C++
-vim.api.nvim_create_autocmd("FileType", {
-	group = my_augroup,
-	pattern = { "c", "cpp", "h", "hpp" },
+-- CSO2
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*/code/cso2/*",
+	group = course_group,
 	callback = function()
 		vim.opt_local.tabstop = 4
 		vim.opt_local.shiftwidth = 4
 		vim.opt_local.softtabstop = 4
 		vim.opt_local.expandtab = true
-	end,
-})
-
--- Go
-vim.api.nvim_create_autocmd("FileType", {
-	group = my_augroup,
-	pattern = { "go" },
-	callback = function()
-		vim.opt_local.tabstop = 8
-		vim.opt_local.shiftwidth = 8
-		vim.opt_local.softtabstop = 8
-		vim.opt_local.expandtab = false
 	end,
 })
 

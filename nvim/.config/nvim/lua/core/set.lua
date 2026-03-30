@@ -3,6 +3,7 @@ vim.opt.guicursor = "a:block"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- PI is no 3
 vim.opt.tabstop = 8
 vim.opt.shiftwidth = 8
 vim.opt.softtabstop = 0

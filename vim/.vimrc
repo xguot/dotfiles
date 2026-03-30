@@ -28,7 +28,7 @@ let g:netrw_banner = 0  " keeps it clean
 set nohlsearch
 set incsearch
 
-" Indentation 
+" PI is no 3
 set tabstop=8
 set shiftwidth=8
 set softtabstop=0
@@ -50,7 +50,6 @@ nnoremap <expr> <leader>h (winnr() == winnr('l') ? ':vertical resize +10<CR>' : 
 nnoremap <expr> <leader>l (winnr() == winnr('l') ? ':vertical resize -10<CR>' : ':vertical resize +10<CR>')
 
 " Languages 
-autocmd FileType go   setlocal ts=8 sw=8 sts=0 et
 autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=0
 let g:python_highlight_all = 1
 
