@@ -1,30 +1,38 @@
-# Load external credentials safely
 source ~/.config/neomutt/secrets
 
-# Account setup
+# Identity
 set realname = "Xiyuan Guo"
 set from = "tommyguo039@gmail.com"
 set use_from = yes
 set envelope_from = yes
 
-# imap configuration
+# IMAP / Mailboxes
 set folder = "imaps://imap.gmail.com:993"
+set imap_user = "tommyguo039@gmail.com"
 set spoolfile = "+INBOX"
 set postponed = "+[Gmail]/Drafts"
 set record = "+[Gmail]/Sent Mail"
 set trash = "+[Gmail]/Trash"
-set imap_user = "tommyguo039@gmail.com"
+mailboxes "+INBOX" "+[Gmail]/Sent Mail" "+[Gmail]/Drafts" "+[Gmail]/Trash"
 
-# smtp configuration
+# SMTP
 set smtp_authenticators = "login"
 set smtp_url = "smtps://tommyguo039%40gmail.com@smtp.gmail.com:465"
 
-# Editor and patch formatting
+# Performance & Cache (Required for speed)
+set header_cache = "~/.cache/neomutt/headers"
+set message_cachedir = "~/.cache/neomutt/bodies"
+set imap_keepalive = 300
+set mail_check = 60
+
+# Editor & Composition
 set editor = "nvim"
 set text_flowed = no
 set send_charset = "us-ascii:utf-8"
+set fast_reply = yes
+set include = yes
 
-# UI
+# UI & Behavior
 set help = no
 set markers = no
 set mark_old = no
@@ -33,12 +41,12 @@ set sort_aux = reverse-last-date-received
 set pager_index_lines = 10
 set menu_scroll = yes
 
-# Clean headers
+# Headers
 ignore *
 unignore from: to: cc: date: subject:
 hdr_order from: to: cc: date: subject:
 
-# Quiet monochrome palette
+# Monochrome Palette
 color normal default default
 color indicator reverse default default
 color tree default default
@@ -46,7 +54,7 @@ color status reverse default default
 color error red default
 color quoted default default
 
-# Keybindings
+# Vi Keybindings
 bind index j next-entry
 bind index k previous-entry
 bind pager j next-line
