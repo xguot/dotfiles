@@ -25,8 +25,9 @@ let g:netrw_liststyle = 0
 let g:netrw_banner = 0  " keeps it clean
 
 " Search
-set nohlsearch
 set incsearch
+set hlsearch
+nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
 
 " 4-space
 set tabstop=4

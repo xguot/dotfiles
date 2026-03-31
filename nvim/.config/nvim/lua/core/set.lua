@@ -19,8 +19,9 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 vim.opt.termguicolors = true
 
