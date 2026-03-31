@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
--- 2-2-2
+-- 2-space
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"lua",
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- 8-8-0
+-- 8-tab
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "c", "go" },
 	callback = function()
