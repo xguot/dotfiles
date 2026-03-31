@@ -34,10 +34,6 @@ bindkey '^[[B' history-search-forward
 # Common Aliases
 alias c='clear'
 alias ..='cd ..'
-alias ls='eza --icons'
-alias ll='eza -lh --icons --git'
-alias la='eza -lah --icons --git'
-alias tree='eza --tree --icons'
 alias vi='vim'
 alias v='nvim'
 alias tl='tmux ls'
@@ -49,6 +45,7 @@ alias m='neomutt'
 alias ipy='ipython'
 alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
 alias gm='gemini'
+
 fix() {
     local cmd=$(fc -ln -1)
     echo "Running: $cmd"
@@ -101,9 +98,6 @@ elif [[ "$OS" == "Linux" ]]; then
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 fi
 
-# Better cd
-eval "$(zoxide init zsh)"
-
 # Starship
 eval "$(starship init zsh)"
 
@@ -112,31 +106,12 @@ export FZF_DEFAULT_OPTS="
     --height 40% --layout=reverse --border
     --bind 'ctrl-/:toggle-preview'
 "
-export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat --style=numbers --color=always --line-range :500 {}; fi'"
-export FZF_CTRL_R_OPTS="--preview 'echo {2..} | bat --color=always --style=plain --language=sh' --preview-window=down:3:wrap:hidden"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then ls -la {} | head -200; else head -n 500 {}; fi'"
+export FZF_CTRL_R_OPTS="--preview 'echo {2..}' --preview-window=down:3:wrap:hidden"
+export FZF_ALT_C_OPTS="--preview 'ls -la {} | head -200'"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
-fi
-
-# Vim terminal
-if [[ -n "$VIM_TERMINAL" ]]; then
-  export NO_COLOR=1
-  export CLICOLOR=0
-
-  unalias ls ll la tree 2>/dev/null
-  
-  if [[ "$OS" == "Darwin" ]]; then
-    alias ls='/bin/ls'
-    alias ll='/bin/ls -l'
-    alias la='/bin/ls -la'
-  else
-    alias ls='/bin/ls --color=never'
-    alias ll='/bin/ls -l --color=never'
-    alias la='/bin/ls -la --color=never'
-  fi
-
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=()
 fi
