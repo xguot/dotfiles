@@ -11,6 +11,9 @@ export PATH="/usr/local/kaspad/bin:$PATH"
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.elan/bin:$PATH"
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
 
 # Local secrets
 [ -f "$HOME/.env" ] && source "$HOME/.env"
@@ -31,12 +34,16 @@ bindkey '^[[B' history-search-forward
 # Common Aliases
 alias c="clear"
 alias ..="cd .."
-alias vi="vim"
-alias v="nvim"
 alias ls="eza --icons"
 alias ll="eza -lh --icons --git"
 alias la="eza -lah --icons --git"
 alias tree="eza --tree --icons"
+alias vi="vim"
+alias v="nvim"
+alias ta='tmux attach -t'
+alias tn='tmux new-session -s'
+alias tl='tmux ls'
+alias tk='tmux kill-session -t'
 alias ipy="ipython"
 alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
 
