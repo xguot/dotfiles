@@ -38,18 +38,18 @@ vim.opt.conceallevel = 2
 vim.opt.clipboard = "unnamedplus"
 
 if vim.fn.executable("wl-copy") == 1 then
-	vim.g.clipboard = {
-		name = "wl-utils",
-		copy = {
-			["+"] = "wl-copy",
-			["*"] = "wl-copy",
-		},
-		paste = {
-			["+"] = "wl-paste --no-newline",
-			["*"] = "wl-paste --no-newline",
-		},
-		cache_enabled = true,
-	}
+  vim.g.clipboard = {
+    name = "wl-utils",
+    copy = {
+      ["+"] = "wl-copy",
+      ["*"] = "wl-copy",
+    },
+    paste = {
+      ["+"] = "wl-paste --no-newline",
+      ["*"] = "wl-paste --no-newline",
+    },
+    cache_enabled = true,
+  }
 end
 
 -- Blackboard white chalk
