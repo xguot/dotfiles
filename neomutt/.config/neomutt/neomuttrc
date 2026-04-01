@@ -13,7 +13,7 @@ set spoolfile = "+INBOX"
 set postponed = "+[Gmail]/Drafts"
 set record = "+[Gmail]/Sent Mail"
 set trash = "+[Gmail]/Trash"
-mailboxes "+INBOX" "+[Gmail]/Sent Mail" "+[Gmail]/Drafts" "+[Gmail]/Trash"
+mailboxes "+INBOX" "+[Gmail]/Sent Mail" "+[Gmail]/Drafts" "+[Gmail]/Trash" "+[Gmail]/Important"
 
 # SMTP
 set smtp_authenticators = "login"
