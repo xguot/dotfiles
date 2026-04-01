@@ -38,14 +38,13 @@ bindkey '^[[B' history-search-forward
 
 # Common Aliases
 alias c='clear'
+alias m='neomutt'
 alias vi='vim'
 alias v='nvim'
-alias tl='tmux ls'
-alias ta='tmux attach -t'
-alias tad='tmux attach -d -t'
-alias tn='tmux new-session -s'
-alias tk='tmux kill-session -t'
-alias m='neomutt'
+alias 't'='tmux new-session -A -s "$(basename $PWD) $(echo $PWD | shasum -a 256 | cut -c1-4)"'
+alias 'tl'="tmux list-sessions -F '#{s/ [a-f0-9][a-f0-9][a-f0-9][a-f0-9]$//:session_name}' 2>/dev/null || echo 'no sessions'"
+alias 'ta'='tmux attach-session'
+alias 'to'='tmux attach-session -t'
 alias ipy='ipython'
 alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
 alias gm='gemini'
