@@ -1,40 +1,5 @@
 return {
   {
-    "stevearc/conform.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local conform = require("conform")
-
-      conform.setup({
-        formatters_by_ft = {
-          lua = { "stylua" },
-          go = { "goimports", "gofmt" },
-          javascript = { "prettier" },
-          typescript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescriptreact = { "prettier" },
-          svelte = { "prettier" },
-          css = { "prettier" },
-          html = { "prettier" },
-          json = { "prettier" },
-          yaml = { "prettier" },
-          markdown = { "prettier" },
-          python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
-          c = { "clang_format" },
-          cpp = { "clang_format" },
-        },
-      })
-
-      vim.keymap.set({ "n", "v" }, "<leader>f", function()
-        conform.format({
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 2000,
-        })
-      end, { desc = "Format current file or visual range" })
-    end,
-  },
-  {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
     dependencies = {

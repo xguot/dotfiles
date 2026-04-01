@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- 2-space
 vim.api.nvim_create_autocmd("FileType", {
+  group = my_augroup,
   pattern = {
     "lua",
     "ruby",
@@ -32,6 +33,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- 8-tab
 vim.api.nvim_create_autocmd("FileType", {
+  group = my_augroup,
   pattern = { "c", "go" },
   callback = function()
     vim.opt_local.tabstop = 8
@@ -43,8 +45,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- LaTex / Markdown / gitcommit
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "tex", "latex", "markdown", "gitcommit" },
   group = my_augroup,
+  pattern = { "tex", "latex", "markdown", "gitcommit" },
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en_us" }
@@ -61,3 +63,41 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end,
 })
+
+-- Format
+vim.api.nvim_create_autocmd("FileType", {
+  group = my_augroup,
+  pattern = "*",
+  callback = function(args)
+    local formatters = {
+      lua = "stylua -",
+      go = "gofmt",
+      javascript = "npx prettier --stdin-filepath %",
+      typescript = "npx prettier --stdin-filepath %",
+      javascriptreact = "npx prettier --stdin-filepath %",
+      typescriptreact = "npx prettier --stdin-filepath %",
+      svelte = "npx prettier --stdin-filepath %",
+      css = "npx prettier --stdin-filepath %",
+      html = "npx prettier --stdin-filepath %",
+      json = "npx prettier --stdin-filepath %",
+      yaml = "npx prettier --stdin-filepath %",
+      markdown = "npx prettier --stdin-filepath %",
+      python = "ruff format -",
+      c = "clang-format",
+      cpp = "clang-format",
+    }
+
+    local ft = vim.bo[args.buf].filetype
+    if formatters[ft] then
+      vim.bo[args.buf].formatprg = formatters[ft]
+    end
+  end,
+})
+
+vim.keymap.set("n", "<leader>f", function()
+  local view = vim.fn.winsaveview()
+  vim.cmd("normal! gggqG")
+  vim.fn.winrestview(view)
+end)
+
+vim.keymap.set("v", "<leader>f", "gq")
