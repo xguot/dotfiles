@@ -32,13 +32,19 @@ set send_charset = "us-ascii:utf-8"
 set fast_reply = yes
 set include = yes
 
+# Pager
+set pipe_decode = yes
+bind pager j next-line
+bind pager k previous-line
+bind pager \Cd half-down
+bind pager \Cu half-up
+
 # UI & Behavior
 set help = no
 set markers = no
 set mark_old = no
 set sort = threads
 set sort_aux = reverse-last-date-received
-set pager_index_lines = 10
 set menu_scroll = yes
 
 # Headers
@@ -53,11 +59,3 @@ color tree default default
 color status reverse default default
 color error red default
 color quoted default default
-
-# Vi Keybindings
-bind index j next-entry
-bind index k previous-entry
-bind pager j next-line
-bind pager k previous-line
-bind generic j next-entry
-bind generic k previous-entry
