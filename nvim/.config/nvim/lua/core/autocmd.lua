@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 local my_augroup = vim.api.nvim_create_augroup("NvimCoreSettings", { clear = true })
 
--- Terminal behavior
+-- Terminal
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
   callback = function()
