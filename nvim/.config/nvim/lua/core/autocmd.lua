@@ -41,16 +41,23 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- LaTex \ Markdown
+-- LaTex / Markdown / gitcommit
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "tex", "latex", "markdown" },
+  pattern = { "tex", "latex", "markdown", "gitcommit" },
+  group = my_augroup,
   callback = function()
-    vim.opt_local.textwidth = 0
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en_us" }
-    vim.keymap.set("n", "j", "gj", { buffer = true })
-    vim.keymap.set("n", "k", "gk", { buffer = true })
+
+    if vim.bo.filetype == "gitcommit" then
+      vim.opt_local.textwidth = 72
+      vim.opt_local.colorcolumn = "73"
+    else
+      vim.opt_local.textwidth = 0
+      vim.opt_local.wrap = true
+      vim.opt_local.linebreak = true
+      vim.keymap.set("n", "j", "gj", { buffer = true })
+      vim.keymap.set("n", "k", "gk", { buffer = true })
+    end
   end,
 })
