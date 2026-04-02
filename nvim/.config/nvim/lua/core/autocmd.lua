@@ -55,11 +55,8 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.opt_local.textwidth = 72
       vim.opt_local.colorcolumn = "73"
     else
-      vim.opt_local.textwidth = 0
-      vim.opt_local.wrap = true
-      vim.opt_local.linebreak = true
-      vim.keymap.set("n", "j", "gj", { buffer = true })
-      vim.keymap.set("n", "k", "gk", { buffer = true })
+      vim.opt_local.textwidth = 80
+      vim.opt_local.colorcolumn = "81"
     end
   end,
 })
@@ -81,7 +78,7 @@ vim.api.nvim_create_autocmd("FileType", {
       html = "npx prettier --stdin-filepath %",
       json = "npx prettier --stdin-filepath %",
       yaml = "npx prettier --stdin-filepath %",
-      markdown = "npx prettier --stdin-filepath %",
+      markdown = "npx prettier --stdin-filepath % --prose-wrap always",
       python = "ruff format -",
       c = "clang-format",
       cpp = "clang-format",
@@ -93,11 +90,3 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end,
 })
-
-vim.keymap.set("n", "<leader>f", function()
-  local view = vim.fn.winsaveview()
-  vim.cmd("normal! gggqG")
-  vim.fn.winrestview(view)
-end)
-
-vim.keymap.set("v", "<leader>f", "gq")
