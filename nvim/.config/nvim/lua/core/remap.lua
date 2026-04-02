@@ -82,14 +82,14 @@ end, { desc = "Toggle Lean Infoview" })
 local digraphs = {
   -- UI
   { "sq", "▪" }, -- Step / Item
-  { "st", "✦" }, -- Highlight / Init
+  { "di", "✦" }, -- Highlight / Init
   { "tr", "❯" }, -- Prompt pointer
   { "ok", "✓" }, -- Success
-  { "xx", "✗" }, -- Error / Fail
+  { "no", "✗" }, -- Error / Fail
   { "wa", "▲" }, -- Warning
   { "in", "ℹ" }, -- Info
   { "as", "✱" }, -- Heavy asterisk (Checkpoint / New Best)
-  { "bs", "★" }, -- Solid star (Best model)
+  { "st", "★" }, -- Solid star (Best model)
 
   -- Deep Learning
   { "pd", "∂" }, -- Partial derivative
