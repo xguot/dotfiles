@@ -60,33 +60,3 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end,
 })
-
--- Format
-vim.api.nvim_create_autocmd("FileType", {
-  group = my_augroup,
-  pattern = "*",
-  callback = function(args)
-    local formatters = {
-      lua = "stylua -",
-      go = "gofmt",
-      javascript = "npx prettier --stdin-filepath %",
-      typescript = "npx prettier --stdin-filepath %",
-      javascriptreact = "npx prettier --stdin-filepath %",
-      typescriptreact = "npx prettier --stdin-filepath %",
-      svelte = "npx prettier --stdin-filepath %",
-      css = "npx prettier --stdin-filepath %",
-      html = "npx prettier --stdin-filepath %",
-      json = "npx prettier --stdin-filepath %",
-      yaml = "npx prettier --stdin-filepath %",
-      markdown = "npx prettier --stdin-filepath % --prose-wrap always",
-      python = "ruff format -",
-      c = "clang-format",
-      cpp = "clang-format",
-    }
-
-    local ft = vim.bo[args.buf].filetype
-    if formatters[ft] then
-      vim.bo[args.buf].formatprg = formatters[ft]
-    end
-  end,
-})
