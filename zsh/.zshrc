@@ -41,19 +41,19 @@ alias c='clear'
 alias m='neomutt'
 alias vi='vim'
 alias v='nvim'
-alias 't'='tmux new-session -A -s "$(basename $PWD) $(echo $PWD | shasum -a 256 | cut -c1-4)"'
-alias 'tl'="tmux list-sessions -F '#{s/ [a-f0-9][a-f0-9][a-f0-9][a-f0-9]$//:session_name}' 2>/dev/null || echo 'no sessions'"
-alias 'ta'='tmux attach-session'
-alias 'to'='tmux attach-session -t'
+t() {
+    if [ -n "$1" ]; then
+        tmux new-session -A -s "$1"
+    else
+        tmux new-session -A -s "$(basename $PWD) $(echo $PWD | shasum -a 256 | cut -c1-4)"
+    fi
+}
+alias tl="tmux list-sessions -F '#{s/ [a-f0-9][a-f0-9][a-f0-9][a-f0-9]$//:session_name}' 2>/dev/null || echo 'no sessions'"
+alias ta='tmux attach-session -t'
+alias tk='tmux kill-session -t' 
 alias ipy='ipython'
 alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
 alias gm='gemini'
-
-fix() {
-    local cmd=$(fc -ln -1)
-    echo "Running: $cmd"
-    eval "$cmd" 2>&1 | gemini "Explain the failure and suggest a fix for: $cmd"
-}
 
 # Zsh
 autoload -Uz compinit && compinit
@@ -95,8 +95,10 @@ elif [[ "$OS" == "Linux" ]]; then
 
     alias vim="vimx"
     alias dup="sudo dnf upgrade --refresh"
-    alias ku="qemu-system-x86_64 -m 4G -smp 4 -cpu host -accel kvm -hda ~/vms/kali/kali-disk.qcow2 -display none -nic user,model=virtio,hostfwd=tcp::2222-:22 &"
-    alias kg="qemu-system-x86_64 -m 4G -smp 4 -cpu host -accel kvm -hda ~/vms/kali/kali-disk.qcow2 -device intel-hda -device hda-duplex -device virtio-vga-gl -display gtk,gl=on -nic user,model=virtio,hostfwd=tcp::2222-:22 &"
+    alias q-kali="qemu-system-x86_64 -m 4G -smp 4 -cpu host -accel kvm -hda ~/vms/kali/kali-disk.qcow2 -nic user,model=virtio,hostfwd=tcp::2222-:22"
+    alias ku="q-kali -display none -daemonize"
+    alias kg="q-kali -device intel-hda -device hda-duplex -device virtio-vga-gl -display gtk,gl=on &"
+    alias ktrial="q-kali -display none -snapshot -daemonize"
     alias kd="ssh -t -p 2222 tommy@localhost 'sudo poweroff'"
 
     source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
