@@ -56,3 +56,15 @@ end
 -- Blackboard white chalk
 vim.cmd("syntax off")
 vim.cmd.colorscheme("quiet")
+
+-- Terminal
+local terminal_palette = {
+    "#000000", "#5f8787", "#d0dfee", "#5f81a5",
+    "#888888", "#999999", "#aaaaaa", "#c1c1c1",
+    "#404040", "#5f8787", "#d0dfee", "#5f81a5",
+    "#888888", "#999999", "#aaaaaa", "#c1c1c1"
+}
+
+for i, hex in ipairs(terminal_palette) do
+    vim.g["terminal_color_" .. (i - 1)] = hex
+end

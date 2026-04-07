@@ -114,3 +114,14 @@ if has('terminal')
   tnoremap <silent> <c-l> <c-\><c-n>:tmuxnavigateright<cr>
   autocmd terminalopen * setlocal nonumber norelativenumber | startinsert
 endif
+
+let s:palette = [
+    \ '#000000', '#5f8787', '#d0dfee', '#5f81a5',
+    \ '#888888', '#999999', '#aaaaaa', '#c1c1c1',
+    \ '#404040', '#5f8787', '#d0dfee', '#5f81a5',
+    \ '#888888', '#999999', '#aaaaaa', '#c1c1c1'
+    \ ]
+
+for i in range(16)
+    execute 'let g:terminal_color_' . i . ' = "' . s:palette[i] . '"'
+endfor
