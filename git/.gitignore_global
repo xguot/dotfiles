@@ -28,3 +28,4 @@ tags
 .serverless/
 .terraform/
 .node_repl_history
+.ipython/

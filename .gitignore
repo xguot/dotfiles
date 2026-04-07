@@ -18,5 +18,8 @@ tmux-*.log
 # Plugin source code
 tmux/.config/tmux/plugins/
 
-# IPython history
+# IPython
+.ipython/
+ipython/.ipython/
 ipython/.ipython/profile_default/history.sqlite
+.ipynb_checkpoints/
