@@ -99,3 +99,8 @@ versioning
 ui
 cmd
 md
+txt
+init
+pyproject
+dataset
+hyperspectral
