@@ -44,13 +44,6 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<leader>|", vim.cmd.vsplit)
 vim.keymap.set("n", "<leader>-", vim.cmd.split)
 
--- Navigate split windows
-vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]])
-vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]])
-vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]])
-vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]])
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
-
 -- Resize windows
 local function resize(cmd, side, amt)
   local dir = vim.fn.winnr() == vim.fn.winnr(side) and amt or -amt
