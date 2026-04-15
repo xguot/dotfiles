@@ -61,8 +61,8 @@ set hlsearch
 nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
 
 " Split windows
-nnoremap <leader>\| :vsplit<CR>
-nnoremap <leader>- :split<CR>
+nnoremap <leader>% :vsplit<CR>
+nnoremap <leader>" :split<CR>
 
 " Resize windows with Space + hjkl (10 units)
 nnoremap <expr> <leader>k (winnr() == winnr('j') ? ':resize +10<CR>' : ':resize -10<CR>')

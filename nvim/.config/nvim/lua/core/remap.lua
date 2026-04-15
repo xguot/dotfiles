@@ -41,8 +41,8 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Split windows
-vim.keymap.set("n", "<leader>|", vim.cmd.vsplit)
-vim.keymap.set("n", "<leader>-", vim.cmd.split)
+vim.keymap.set("n", "<leader>%", vim.cmd.vsplit)
+vim.keymap.set("n", '<leader>"', vim.cmd.split)
 
 -- Resize windows
 local function resize(cmd, side, amt)
