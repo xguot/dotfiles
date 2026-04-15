@@ -49,7 +49,6 @@ alias tl="tmux list-sessions -F '#S' 2>/dev/null || echo 'no sessions'"
 alias ta='tmux attach-session -t'
 alias tk='tmux kill-session -t'
 alias ipy='ipython'
-alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
 alias gm='gemini'
 
 # Zsh
@@ -91,7 +90,6 @@ elif [[ "$OS" == "Linux" ]]; then
     export PATH=$PATH:/home/xguo/.npm-global/bin
 
     alias vim="vimx"
-    alias dup="sudo dnf upgrade --refresh"
 
     source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
