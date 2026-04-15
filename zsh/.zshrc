@@ -42,15 +42,12 @@ alias m='neomutt'
 alias vi='vim'
 alias v='nvim'
 t() {
-    if [ -n "$1" ]; then
-        tmux new-session -A -s "$1"
-    else
-        tmux new-session -A -s "$(basename $PWD) $(echo $PWD | shasum -a 256 | cut -c1-4)"
-    fi
+    local s="${1:-${PWD##*/}}"
+    tmux new-session -A -s "${s//./_}"
 }
-alias tl="tmux list-sessions -F '#{s/ [a-f0-9][a-f0-9][a-f0-9][a-f0-9]$//:session_name}' 2>/dev/null || echo 'no sessions'"
+alias tl="tmux list-sessions -F '#S' 2>/dev/null || echo 'no sessions'"
 alias ta='tmux attach-session -t'
-alias tk='tmux kill-session -t' 
+alias tk='tmux kill-session -t'
 alias ipy='ipython'
 alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
 alias gm='gemini'
