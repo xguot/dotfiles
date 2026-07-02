@@ -1,0 +1,31 @@
+# OS / Editor junk
+.DS_Store
+.netrwhist
+*.swp
+*.swo
+*.spl
+*.sug
+.vim/undodir/
+
+# Secrets & Machine-specific overrides — NEVER track API keys
+.env
+.env.*
+**/*.local
+**/secrets/
+**/system.conf
+**/config.toml.bak
+
+# CodeWhale / DeepSeek — all TOML configs contain or may contain API keys
+codewhale/.codewhale/config.toml
+codewhale/.codewhale/*.toml
+**/.codewhale/config.toml
+**/.codewhale/secrets/
+**/.deepseek/
+
+# IPython
+.ipython/
+ipython/.ipython/
+ipython/.ipython/profile_default/history.sqlite
+.ipynb_checkpoints/
+*.local
+sway/.config/sway/backgrounds/f26/active.png
