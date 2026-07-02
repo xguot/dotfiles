@@ -1,0 +1,45 @@
+[user]
+	name = Xiyuan Guo
+	email = tommyguo039@gmail.com
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore_global
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+
+[credential]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[sendemail]
+    smtpServer = smtp.gmail.com
+    smtpServerPort = 587
+    smtpEncryption = tls
+    smtpUser = tommyguo039@gmail.com
+    confirm = auto
+    annotate = yes
+    transferEncoding = 8bit
+    chainreplyto = false
+    thread = yes
+    suppresscc = self
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

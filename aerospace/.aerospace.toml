@@ -1,0 +1,151 @@
+# Place a copy of this config to ~/.aerospace.toml
+# After that, you can edit ~/.aerospace.toml to your liking
+
+config-version = 2
+
+# Focus workspace 1 at startup when in clamshell mode (built-in display off)
+after-startup-command = ['exec-and-forget ~/dotfiles/aerospace/startup.sh']
+start-at-login = false
+
+# Disabling these allows you to create infinite nested horizontal
+# and vertical splits, just like Sway. You are now in manual control.
+enable-normalization-flatten-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = false
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+automatically-unhide-macos-hidden-apps = false
+
+# Workspaces 1-5 on external monitor, 6-10 on built-in.
+# Uses semantic patterns (secondary / built-in) — no hardcoded monitor names.
+# i3 standard: when a monitor disconnects, its workspaces hide until it returns.
+[workspace-to-monitor-force-assignment]
+    1 = 'secondary'
+    2 = 'secondary'
+    3 = 'secondary'
+    4 = 'secondary'
+    5 = 'secondary'
+    6 = 'built-in'
+    7 = 'built-in'
+    8 = 'built-in'
+    9 = 'built-in'
+    10 = 'built-in'
+
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+on-mode-changed = []
+exec-on-workspace-change = ['/bin/bash', '-c', 'ws=$(/opt/homebrew/bin/aerospace list-workspaces --focused 2>/dev/null); if [[ $ws -gt 10 ]]; then for win in $(/opt/homebrew/bin/aerospace list-windows --workspace "$ws" 2>/dev/null | awk "{print \$1}"); do /opt/homebrew/bin/aerospace move-node-to-workspace --window-id "$win" 6 2>/dev/null; done; /opt/homebrew/bin/aerospace workspace 6; fi']
+
+[key-mapping]
+    preset = 'qwerty'
+
+[gaps]
+    inner.horizontal = 0
+    inner.vertical =   0
+    outer.left =       0
+    outer.bottom =     0
+    outer.top =        0
+    outer.right =      0
+
+[mode.main.binding]
+
+    alt-enter = 'exec-and-forget open -na kitty --args --single-instance --directory ~'
+
+    alt-shift-enter = 'exec-and-forget emacsclient -c -n -a ""'
+
+    alt-c = 'exec-and-forget osascript -e "tell application \"Google Chrome\" to make new window"'
+
+    # Close the focused window (Sway/i3 standard)
+    alt-shift-q = 'exec-and-forget /bin/bash -c "CURRENT=\$(/opt/homebrew/bin/aerospace list-workspaces --focused 2>/dev/null); /opt/homebrew/bin/aerospace close; sleep 0.15; /opt/homebrew/bin/aerospace workspace \$CURRENT 2>/dev/null"'
+
+    # Your requested binds for explicit manual splits.
+    alt-v = 'split vertical'
+    alt-b = 'split horizontal'
+    
+    # Stacking (v_accordion) and Tabbed (h_accordion)
+    alt-s = 'layout v_accordion'
+    alt-w = 'layout h_accordion'
+
+    # Toggle between horizontal and vertical tiling (Sway: layout toggle split)
+    alt-e = 'layout tiles horizontal vertical'
+    
+    # Toggle the current window between tiling and floating
+    alt-shift-space = 'layout floating tiling'
+
+    # Toggle fullscreen
+    alt-f = 'fullscreen'
+
+    # Note: 'alt-space' (focus toggle_tiling_floating in Sway) is not supported.
+    # Because floating windows are handed back to the macOS WindowServer, 
+    # AeroSpace loses the ability to focus between a "floating layer" 
+    # and a "tiling layer". If you are in a floating window, you must use 
+    # your mouse or native Mac application switching (Cmd+Tab) to get back.
+    
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10' # Mapped '0' to workspace '10'
+
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-8 = 'move-node-to-workspace 8'
+    alt-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-0 = 'move-node-to-workspace 10'
+
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    alt-r = 'mode resize'
+
+    alt-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main'] # Use this if your nested tree gets too messy
+    f = ['layout floating tiling', 'mode main']
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+    #s = ['layout sticky tiling', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
+
+[mode.resize.binding]
+    esc = 'mode main'
+    enter = 'mode main'
+
+    # Vim keys: resize focused window
+    h = 'resize width -50'
+    j = 'resize height +50'
+    k = 'resize height -50'
+    l = 'resize width +50'
+
+# No explicit on-window-detected for Sioyek — macOS naturally opens
+# new windows on the current Space. With workspace-to-monitor-force-assignment
+# using semantic patterns, AeroSpace doesn't interfere with this.

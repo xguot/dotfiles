@@ -1,0 +1,20 @@
+### Common PATHs
+# Dynamically resolve Homebrew Ruby gems path (survives Ruby version upgrades)
+for gemdir in /opt/homebrew/lib/ruby/gems/*/bin; do
+    export PATH="$gemdir:$PATH"
+done
+
+export PATH="/Library/TeX/texbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/kaspad/bin:$PATH"
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.elan/bin:$PATH"
+
+# Go specifics
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+
+# Node/NPM
+export PATH="$PATH:$HOME/.npm-global/bin"
