@@ -1,0 +1,92 @@
+#!/bin/bash
+# uvavpn — Connect to UVA Anywhere VPN with DeepSeek split-tunnel bypass.
+# macOS only (uses route, dscacheutil, netstat, mDNSResponder).
+
+set -euo pipefail
+
+UVA_SERVER="uva-anywhere-1.itc.virginia.edu"
+CERT="$HOME/.cert/uva_vpn.p12"
+DEEPSEEK_HOSTS=(
+    "api.deepseek.com"
+    "chat.deepseek.com"
+    "cdn.deepseek.com"
+    "platform.deepseek.com"
+)
+HOSTS_MARKER="# deepseek-bypass"
+
+cleanup() {
+    echo "⚠  uvavpn interrupted — run 'cleanvpn' to restore network"
+    exit 1
+}
+trap cleanup SIGINT SIGTERM
+
+# Grab the current default gateway BEFORE openconnect takes over routing.
+echo "→ Finding default gateway..."
+DEFAULT_GW=$(netstat -rn -f inet 2>/dev/null | awk '/^default/ {print $2; exit}')
+if [[ -z "$DEFAULT_GW" ]]; then
+    echo "  ✗ could not determine default gateway"
+    exit 1
+fi
+echo "  ✓ default gateway is $DEFAULT_GW"
+
+# Check if already connected.
+if pgrep -x openconnect >/dev/null 2>&1; then
+    echo "→ openconnect already running — skipping connection"
+else
+    echo "→ Connecting to UVA Anywhere VPN..."
+    echo "  (sudo password, then certificate passphrase)"
+    sudo openconnect \
+        --protocol=anyconnect \
+        --background \
+        --certificate="$CERT" \
+        "$UVA_SERVER"
+
+    # Wait for the tunnel to come up.
+    echo -n "  waiting for tunnel"
+    for i in $(seq 1 15); do
+        if pgrep -x openconnect >/dev/null 2>&1; then
+            echo " ✓"
+            break
+        fi
+        echo -n "."
+        sleep 1
+    done
+    if ! pgrep -x openconnect >/dev/null 2>&1; then
+        echo
+        echo "  ✗ openconnect failed to start"
+        exit 1
+    fi
+fi
+
+# Resolve DeepSeek IPs and add bypass routes.
+echo "→ Adding DeepSeek split-tunnel bypasses..."
+ADDED=0
+for host in "${DEEPSEEK_HOSTS[@]}"; do
+    ips=$(dig +short "$host" 2>/dev/null | grep -E '^[0-9]' || true)
+    if [[ -z "$ips" ]]; then
+        echo "  - $host: no IPs resolved, skipping"
+        continue
+    fi
+    while read -r ip; do
+        [[ -z "$ip" ]] && continue
+        # Add /etc/hosts entry so cleanvpn can find it later.
+        if ! grep -q "$ip.*$host.*$HOSTS_MARKER" /etc/hosts 2>/dev/null; then
+            echo "$ip $host $HOSTS_MARKER" | sudo tee -a /etc/hosts >/dev/null
+        fi
+        # Add a host /32 route via the real gateway (bypasses VPN 0/1 routes).
+        sudo route -n add -host "$ip" "$DEFAULT_GW" 2>/dev/null || true
+        echo "  ✓ $host → $ip"
+        ADDED=$((ADDED + 1))
+    done <<< "$ips"
+done
+
+if [[ $ADDED -eq 0 ]]; then
+    echo "  ⚠ no bypass routes added — DeepSeek may go through VPN"
+else
+    echo "  ✓ $ADDED bypass route(s) added"
+fi
+
+sudo dscacheutil -flushcache 2>/dev/null || true
+sudo killall -HUP mDNSResponder 2>/dev/null || true
+
+echo "✓ UVA VPN connected — DeepSeek bypassed"

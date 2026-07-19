@@ -1,0 +1,35 @@
+[user]
+    name = Xiyuan Guo
+    email = tommyguo039@gmail.com
+
+[core]
+    editor = vim
+    excludesfile = ~/.config/git/ignore
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+
+[sendemail]
+    smtpserver = smtp.gmail.com
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = tommyguo039@gmail.com
+    confirm = auto
+    annotate = yes
+    transferencoding = 8bit
+    chainreplyto = false
+    thread = yes
+    suppresscc = self
