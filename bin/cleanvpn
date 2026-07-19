@@ -1,0 +1,47 @@
+#!/bin/bash
+# VPN cleanup — politely shut down openconnect and remove custom bypasses.
+# macOS only (uses route, dscacheutil, mDNSResponder).
+
+set -euo pipefail
+
+echo "→ Stopping openconnect..."
+# Send SIGINT (Ctrl+C equivalent) so vpnc-script runs its teardown hooks!
+if sudo pkill -SIGINT openconnect 2>/dev/null; then
+    echo "  ✓ openconnect shutting down cleanly..."
+    sleep 3 # Give vpnc-script time to restore macOS DNS and routes
+else
+    echo "  - no openconnect running"
+fi
+
+# openconnect's teardown handles the 0.0.0.0/1 routes and DNS automatically.
+# We only need to clean up our custom DeepSeek bypasses.
+
+echo "→ Cleaning DeepSeek bypass routes..."
+stale_ips=$(grep "#.*deepseek-bypass" /etc/hosts 2>/dev/null | awk '{print $1}' | sort -u || true)
+if [[ -n "$stale_ips" ]]; then
+    while read -r ip; do
+        [[ -z "$ip" ]] && continue
+        sudo route -n delete -host "$ip" 2>/dev/null >/dev/null || true
+    done <<< "$stale_ips"
+    echo "  ✓ removed bypass routes"
+else
+    echo "  - no bypass routes found"
+fi
+
+echo "→ Cleaning /etc/hosts..."
+if grep -q "#.*deepseek-bypass" /etc/hosts 2>/dev/null; then
+    if [[ "$(uname)" == "Darwin" ]]; then
+        sudo sed -i '' '/#.*deepseek-bypass/d' /etc/hosts
+    else
+        sudo sed -i '/#.*deepseek-bypass/d' /etc/hosts
+    fi
+    echo "  ✓ removed DeepSeek bypass entries"
+else
+    echo "  - no bypass entries found"
+fi
+
+sudo dscacheutil -flushcache
+sudo killall -HUP mDNSResponder 2>/dev/null || true
+echo "  ✓ DNS cache flushed"
+
+echo "✓ VPN cleaned — network should be fine"
