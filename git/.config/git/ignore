@@ -1,0 +1,49 @@
+# Git internal (Stops Telescope/search noise)
+.git/
+
+# Operating Systems
+.DS_Store
+Thumbs.db
+*.stackdump
+
+# Editor — Vim
+*.sw[a-p]
+*.swo
+*.un~
+Session.vim
+.netrwhist
+undo/
+tags
+
+# Editor — Emacs
+*~
+\#*\#
+.\#*
+*.elc
+*.eln
+.emacs.desktop
+.emacs.desktop.lock
+auto-save-list/
+tramp
+eln-cache/
+.eshell/
+.transient/
+
+# Secrets and Environment (Safety Fallback)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# IDE and Tooling
+.vscode/
+.idea/
+.serverless/
+.terraform/
+.node_repl_history
+.ipython/
+
+# CodeWhale
+.codewhale/
+.deepseek/
