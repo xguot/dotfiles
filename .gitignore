@@ -1,0 +1,44 @@
+# Secrets — never commit
+*.env
+*.pem
+*.key
+*credentials*
+*secret*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Vim
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# Zsh
+*.zwc
+.zcompdump*
+.zhistory
+
+# Doom Emacs
+*.elc
+*.eln
+.emacs.d/auto-save-list/
+.emacs.desktop
+.emacs.desktop.lock
+.emacs~
+
+# Editor / IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Misc
+*.log
+*.tmp
+*.bak

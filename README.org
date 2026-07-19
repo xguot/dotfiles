@@ -1,0 +1,6 @@
+#+TITLE: dotfiles
+
+#+begin_quote
+"Perfection of means and confusion of ends seems to characterize our age." \\
+— Albert Einstein
+#+end_quote
