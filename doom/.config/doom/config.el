@@ -105,9 +105,6 @@
         evil-operator-state-cursor '(box)
         evil-emacs-state-cursor    '(box)))
 
-  ;; Map C-[ strictly to physical escape
-  (define-key key-translation-map (kbd "C-[") (kbd "<escape>"))
-
 ;; Window focus
 (add-hook 'server-after-make-frame-hook
           (lambda ()
