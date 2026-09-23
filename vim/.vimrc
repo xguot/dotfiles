@@ -15,7 +15,7 @@ set wildmenu wildmode=full
 set list listchars=tab:\ \ ,trail:␣
 
 highlight SignColumn ctermbg=NONE guibg=NONE
-highlight TrailingWhitespace ctermbg=blue
+highlight TrailingWhitespace ctermbg=red
 
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 nnoremap Y y$
