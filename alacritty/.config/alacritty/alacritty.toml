@@ -1,3 +1,6 @@
+[window]
+padding = { x = 8, y = 0 }
+
 [font]
 size = 15
 
@@ -15,6 +18,3 @@ style = "Italic"
 
 [env]
 TERM = "xterm-256color"
-
-[window]
-padding = { x = 8, y = 0 }
