@@ -14,7 +14,17 @@ else
 fi
 
 # openconnect's teardown handles the 0.0.0.0/1 routes and DNS automatically.
-# We only need to clean up our custom DeepSeek bypasses.
+# We still sweep the anti-loop server route and our custom DeepSeek bypasses.
+
+echo "→ Cleaning stale VPN server route..."
+UVA_SERVER="uva-anywhere-1.itc.virginia.edu"
+UVA_SERVER_IP=$(dig +short "$UVA_SERVER" 2>/dev/null | grep -E '^[0-9]' | head -1 || true)
+if [[ -n "$UVA_SERVER_IP" ]] && netstat -rn -f inet 2>/dev/null | awk '{print $1}' | grep -qx "$UVA_SERVER_IP"; then
+    sudo route -n delete -host "$UVA_SERVER_IP" 2>/dev/null || true
+    echo "  ✓ removed stale VPN server route"
+else
+    echo "  - no stale VPN server route"
+fi
 
 echo "→ Cleaning DeepSeek bypass routes..."
 stale_ips=$(grep "#.*deepseek-bypass" /etc/hosts 2>/dev/null | awk '{print $1}' | sort -u || true)

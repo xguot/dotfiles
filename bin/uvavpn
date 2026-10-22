@@ -43,6 +43,15 @@ else
         source "$OVERRIDES_FILE"
     fi
 
+    # Remove a stale server route left by a previous unclean teardown.
+    # vpnc-script adds it as an anti-loop route and removes it only on a
+    # clean disconnect; a leftover breaks the next connect attempt.
+    STALE_SERVER_IP=$(dig +short "$UVA_SERVER" 2>/dev/null | grep -E '^[0-9]' | head -1 || true)
+    if [[ -n "$STALE_SERVER_IP" ]] && netstat -rn -f inet 2>/dev/null | awk '{print $1}' | grep -qx "$STALE_SERVER_IP"; then
+        sudo route -n delete -host "$STALE_SERVER_IP" 2>/dev/null || true
+        echo "  ✓ removed stale VPN server route"
+    fi
+
     sudo openconnect \
         --protocol=anyconnect \
         --background \
